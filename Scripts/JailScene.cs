@@ -20,7 +20,10 @@ public partial class JailScene : Node2D
 		RestButton.ButtonPressed += OnRestButtonPressed;
 
 		RestButton.InputEvent += OnRestButtonInput;
+
 		TrainingButton.InputEvent += OnTrainingButtonInput;
+
+
 
 	}
 
