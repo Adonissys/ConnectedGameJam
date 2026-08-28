@@ -12,7 +12,6 @@ public partial class JailScene : Node2D
 	public override void _Ready()
 	{
 		RestButton.InputEvent += OnRestButtonInput;
-		TrainingButton.InputEvent += OnTrainingButtonInput;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
