@@ -2,6 +2,6 @@
 
 [ext_resource type="Script" uid="uid://diyuowclirb1g" path="res://Scripts/JailScene.cs" id="1_q5luu"]
 
-[node name="JailScene" type="Node2D" unique_id=1351055193 node_paths=PackedStringArray("RestButton")]
+[node name="JailScene" type="Node2D" unique_id=1351055193]
 script = ExtResource("1_q5luu")
-RestButton = NodePath("")
+RestButton = null

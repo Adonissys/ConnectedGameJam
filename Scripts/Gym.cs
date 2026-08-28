@@ -3,7 +3,7 @@ using System;
 
 public partial class Gym : Area2D
 {
-	
+	private bool IsWorkingOut = false;
 	public override void _Ready()
 	{
 	}
@@ -34,5 +34,13 @@ public partial class Gym : Area2D
 	private void OnMouseExited()
 	{
 		Outline(false);
+	}
+
+	private void OnInputEvent(Node viewport, InputEvent @event, long shapeIdx)
+	{
+		if(@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed && mouseEvent.ButtonIndex == MouseButton.Left){
+			WorkOut();
+			GD.Print("Fui clicado");
+		}		
 	}
 }
