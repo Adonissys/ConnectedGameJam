@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c36m8tvkcvesk"]
+
+[ext_resource type="Script" uid="uid://dhin364wedhq7" path="res://Scripts/Bed.cs" id="1_plytk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ev4kj"]
+
+[node name="Bed" type="Area2D" unique_id=440541105]
+script = ExtResource("1_plytk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1030733622]
+shape = SubResource("RectangleShape2D_ev4kj")
