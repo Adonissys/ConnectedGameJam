@@ -4,9 +4,6 @@ using System;
 public partial class JailScene : Node2D
 {
 
-	private CharacterBody2D Gladiator;
-	private Button RestButton;
-
 	[Export]private CharacterBody2D Player;
 	[Export]private Area2D RestButton;
 	
@@ -17,13 +14,9 @@ public partial class JailScene : Node2D
 	public override void _Ready()
 	{
 
-		RestButton.ButtonPressed += OnRestButtonPressed;
-
 		RestButton.InputEvent += OnRestButtonInput;
 
 		TrainingButton.InputEvent += OnTrainingButtonInput;
-
-
 
 	}
 
@@ -32,9 +25,6 @@ public partial class JailScene : Node2D
 	{
 	}
 
-
-	private void OnRestButtonPressed(){}
-		
 
 	private void OnRestButtonInput(Node viewport, InputEvent @event, long shapeIdx){
 		if(@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed && mouseEvent.ButtonIndex == MouseButton.Left){
