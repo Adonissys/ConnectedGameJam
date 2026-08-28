@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://4fpci4ya6edk"]
+
+[ext_resource type="Script" uid="uid://buv64gg6ln0ps" path="res://Scripts/Gym.cs" id="1_begwh"]
+[ext_resource type="Texture2D" uid="uid://b3h1eqaa0sana" path="res://icon.svg" id="2_0xh53"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xh53"]
+size = Vector2(32, 32)
+
+[node name="Gym" type="Area2D" unique_id=1985391776]
+script = ExtResource("1_begwh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1158985030]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_0xh53")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=552681979]
+shape = SubResource("RectangleShape2D_0xh53")
+
+[connection signal="mouse_entered" from="." to="." method="OnMouseEntered"]
+[connection signal="mouse_exited" from="." to="." method="OnMouseExited"]
