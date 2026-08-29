@@ -6,6 +6,8 @@
 [node name="Player" type="CharacterBody2D" unique_id=677085593]
 script = ExtResource("1_kyqiw")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1291476761]
+[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=1291476761]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_gntrk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1349220938]

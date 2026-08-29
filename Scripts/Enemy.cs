@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 public partial class Enemy : CharacterBody2D {
 	
 	[Signal] public delegate void DefeatEventHandler();
-	[Signal] public delegate void AttackEventHandler();
+	[Signal] public delegate void AttackEventHandler(int damage);
 
 	[Export] public Timer AttackTimer;
 	[Export] public AnimatedSprite2D EnemySprite;
@@ -50,7 +50,7 @@ public partial class Enemy : CharacterBody2D {
 		Global.Instance.Outcome = Global.FightOutcome.PLAYER_WON;
 		EnemySprite.Play("defeat"+_enemyIndex.ToString());
 		await ToSignal(EnemySprite, AnimatedSprite2D.SignalName.AnimationFinished);
-		EmitSignal(SignalName.Defeat);
+		EmitSignal(SignalName.Defeat, _damage);
 	}
 
 }
