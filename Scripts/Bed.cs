@@ -33,6 +33,7 @@ public partial class Bed : Area2D
 		if(Global.Instance.Actions > 0 && Player.Health < Global.Instance.Health){ 
 			Player.Health += heal;
 			EmitSignal(SignalName.Action);
+			GD.Print("fui reduzido");
 			}
 
 	}

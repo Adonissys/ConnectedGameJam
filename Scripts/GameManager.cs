@@ -28,5 +28,6 @@ public partial class GameManager : Node
 		if(Global.Instance.Actions > 0){
 			Global.Instance.Actions -= 1;
 		}
- }
+
+}
 }

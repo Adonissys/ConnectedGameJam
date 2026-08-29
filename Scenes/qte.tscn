@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://2u27ayg6t6bv"]
 
+[ext_resource type="Script" uid="uid://dcvfb6jpqiiak" path="res://Scripts/Qte.cs" id="1_5dyxl"]
 [ext_resource type="Texture2D" uid="uid://b3rili0i07iwr" path="res://Assets/Sprites/ui/exercise_bar.png" id="1_k2nck"]
 [ext_resource type="Texture2D" uid="uid://bpxk6bvxdrdb1" path="res://Assets/Sprites/ui/pointer.png" id="2_5dyxl"]
 [ext_resource type="PackedScene" uid="uid://c4hp5q5vqbdqp" path="res://Scenes/gauge.tscn" id="3_bb3fu"]
@@ -59,7 +60,9 @@ size = Vector2(16, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2s8ea"]
 size = Vector2(10, 10)
 
-[node name="QTE" type="Node2D" unique_id=1655114331]
+[node name="QTE" type="Node2D" unique_id=1655114331 node_paths=PackedStringArray("Gauges")]
+script = ExtResource("1_5dyxl")
+Gauges = []
 
 [node name="BarSprite" type="Sprite2D" parent="." unique_id=873325812]
 texture = ExtResource("1_k2nck")
