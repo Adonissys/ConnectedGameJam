@@ -18,4 +18,9 @@ public partial class Hud : Control
 		EmitSignal(SignalName.FightStarted);
 		GetTree().ChangeSceneToFile("res://Scenes/FightScene.tscn");
 	}
+
+	public void ShowQuickTimeEvent()
+	{
+		qte.ActivateQte();
+	}
 }
