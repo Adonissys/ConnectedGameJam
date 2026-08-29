@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c4hp5q5vqbdqp"]
+
+[ext_resource type="Script" uid="uid://cdf6r6gm4hx25" path="res://Scripts/Gauge.cs" id="1_r8sb0"]
+
+[node name="Gauge" type="Area2D" unique_id=929277608]
+script = ExtResource("1_r8sb0")
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
+[connection signal="area_exited" from="." to="." method="OnAreaExited"]
