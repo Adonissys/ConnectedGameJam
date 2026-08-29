@@ -22,13 +22,13 @@ public partial class Qte : Node2D
 	}
 
 
-    public override void _Ready()
-    {
+	public override void _Ready()
+	{
 		foreach(Gauge gauge in Gauges)
 		{
 			gauge.GaugeSelected += OnGaugeSelected;
 		}
-    }
+	}
 
 	public void ActivateQte()
 	{
