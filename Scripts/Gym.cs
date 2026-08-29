@@ -4,13 +4,19 @@ using System;
 public partial class Gym : Area2D
 {
 	private bool IsWorkingOut = false;
+	
+	[Signal] public delegate void ActionEventHandler();
+	
 	public override void _Ready()
 	{
+		this.Action += Global.Instance.OnAction;
 	}
 
 	private void WorkOut()
 	{
-		
+		if(Global.Instance.Actions > 0){ //escrevam a função dentro desse if
+			EmitSignal(SignalName.Action);
+			}
 	}
 
 	private void Outline(bool enabled)

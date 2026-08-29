@@ -18,8 +18,9 @@ public partial class Global : Node
 		get => _health; 
 		set => _health = Math.Max(0, value);
 	}
+	
 	public int Resistance{get; set;} = 0;
-
+	public int Actions{get; set;} = 3;
 	public int CurrentEnemy{get; set;} = 0;
 	
 	public override void _Ready()
@@ -33,5 +34,15 @@ public partial class Global : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+	}
+	
+	public void OnFightStarted(){
+		Actions = 3;
+	}
+	
+	public void OnAction(){
+		if(Actions > 0){
+			Actions -= 1;
+		}
 	}
 }
