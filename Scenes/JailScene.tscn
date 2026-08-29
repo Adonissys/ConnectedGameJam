@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dh0ss0b2occk"]
 
-[ext_resource type="Script" uid="uid://diyuowclirb1g" path="res://Scenes/JailScene.cs" id="1_q5luu"]
+[ext_resource type="Script" uid="uid://diyuowclirb1g" path="res://Scripts/JailScene.cs" id="1_q5luu"]
 
 [node name="JailScene" type="Node2D" unique_id=1351055193]
 script = ExtResource("1_q5luu")
+RestButton = null

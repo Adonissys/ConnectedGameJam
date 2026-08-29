@@ -3,7 +3,7 @@ using System;
 
 public partial class Global : Node
 {
-	public int resistence{get; set;} = 0;
+	public int resistance{get; set;} = 0;
 	public int health{get; set;} = 0;
 	public int attack{get; set;} = 0;
 	public int stamina{get; set;} = 0;
