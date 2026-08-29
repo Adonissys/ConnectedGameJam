@@ -26,9 +26,11 @@ public partial class Bed : Area2D
 		}		
 	}
 	
+
 	private void Sleep()
 	{
 		if(IsSleeping || Global.Instance.Actions == 0 || Player.Health >= Global.Instance.Health) return;
+
 
 		IsSleeping = true;
 		Player.Visible = false;

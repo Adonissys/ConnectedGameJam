@@ -35,14 +35,4 @@ public partial class Global : Node
 	public override void _Process(double delta)
 	{
 	}
-	
-	public void OnFightStarted(){
-		Actions = 3;
-	}
-	
-	public void OnAction(){
-		if(Actions > 0){
-			Actions -= 1;
-		}
-	}
 }
