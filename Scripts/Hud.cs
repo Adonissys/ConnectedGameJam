@@ -11,7 +11,6 @@ public partial class Hud : Control
 	public override void _Ready()
 	{
 		FightButton.Pressed += OnFightButtonPressed;
-		this.FightStarted += Global.Instance.OnFightStarted;
 	}
 	
 	private void OnFightButtonPressed(){

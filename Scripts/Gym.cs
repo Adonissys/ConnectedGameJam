@@ -11,7 +11,6 @@ public partial class Gym : Area2D
 
 	public override void _Ready()
 	{
-		this.Action += Global.Instance.OnAction;
 	}
 
 	private void WorkOut()
