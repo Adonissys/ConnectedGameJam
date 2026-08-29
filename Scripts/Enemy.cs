@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 public partial class Enemy : CharacterBody2D {
 	
 	[Signal] public delegate void DefeatEventHandler();
-	[Signal] public delegate void AttackEventHandler(int damage);
+	[Signal] public delegate void AttackEventHandler(int baseDamage);
 
 	[Export] public Timer AttackTimer;
 	[Export] public AnimatedSprite2D EnemySprite;
