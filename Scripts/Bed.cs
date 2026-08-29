@@ -3,7 +3,7 @@ using System;
 
 public partial class Bed : Area2D
 {
-	[Export] private CharacterBody2D Player;
+	[Export] private Player Player;
 	[Signal] public delegate void ActionEventHandler();
 	
 	
@@ -13,6 +13,7 @@ public partial class Bed : Area2D
 	public override void _Ready()
 	{
 		InputEvent += OnRestButtonInput;
+		this.Action += Global.Instance.OnAction;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,8 +31,8 @@ public partial class Bed : Area2D
 	}
 	
 	private void Rest(int heal){
-		if(true){ //fazer avaliar a quantidade de ações (ações > 0)
-			// linha em que o jogador recebe vida pelo descanso
+		if(Global.Instance.Actions > 0 && Player.Health < Global.Instance.Health){ 
+			Player.Health += heal;
 			EmitSignal(SignalName.Action);
 			}
 

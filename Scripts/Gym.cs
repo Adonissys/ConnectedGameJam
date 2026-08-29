@@ -3,19 +3,26 @@ using System;
 
 public partial class Gym : Area2D
 {
+
 	[Signal] public delegate void GymCalledEventHandler();
 	[Export] private AnimatedSprite2D Sprite;
-	private bool WorkingOut = false;
+	private bool WorkingOut = false;	
+	[Signal] public delegate void ActionEventHandler();
+	
+
 	public override void _Ready()
 	{
+		this.Action += Global.Instance.OnAction;
 	}
 
 	private void WorkOut()
 	{
-		if(WorkingOut) return;
+
+		if(WorkingOut && Global.Instance.Actions == 0) return;
 
 		WorkingOut = true;
 		EmitSignal(SignalName.GymCalled);
+		EmitSignal(SignalName.Action);
 		Sprite.Play("WorkOut");
 	}
 
