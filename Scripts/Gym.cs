@@ -3,7 +3,6 @@ using System;
 
 public partial class Gym : Area2D
 {
-
 	[Signal] public delegate void GymCalledEventHandler();
 	[Export] private AnimatedSprite2D Sprite;
 	private bool WorkingOut = false;	
