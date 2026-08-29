@@ -13,6 +13,7 @@ public partial class Gauge : Area2D
     }
 	[Export] public GaugeQuality Quality { get; set; } = GaugeQuality.Bad;
 	private bool PointerInGauge = false;
+	public bool CanRecieveInput = false;
 
     public override void _Process(double delta)
     {

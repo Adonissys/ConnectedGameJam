@@ -7,7 +7,7 @@ public partial class Player : CharacterBody2D
 	[Signal] public delegate void DeathEventHandler();
 
 	[Export] public Enemy CurrentEnemy;
-	[Export] public AnimationPlayer PlayerAnimation
+	[Export] public AnimationPlayer PlayerAnimation;
 
 	private int _health;
 	private int _resistance;

@@ -3,14 +3,26 @@ using System;
 
 public partial class Gym : Area2D
 {
-	private bool IsWorkingOut = false;
+	[Signal] public delegate void GymCalledEventHandler();
+	[Export] private AnimatedSprite2D Sprite;
+	private bool WorkingOut = false;
 	public override void _Ready()
 	{
 	}
 
 	private void WorkOut()
 	{
-		
+		if(WorkingOut) return;
+
+		WorkingOut = true;
+		EmitSignal(SignalName.GymCalled);
+		Sprite.Play("WorkOut");
+	}
+
+	public void StopWorkingOut()
+	{
+		WorkingOut = false;
+		Sprite.Play("Idle");
 	}
 
 	private void Outline(bool enabled)
