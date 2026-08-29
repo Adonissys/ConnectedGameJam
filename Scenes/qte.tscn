@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://2u27ayg6t6bv"]
+
+[ext_resource type="Texture2D" uid="uid://b3rili0i07iwr" path="res://Assets/Sprites/ui/exercise_bar.png" id="1_k2nck"]
+[ext_resource type="Texture2D" uid="uid://bpxk6bvxdrdb1" path="res://Assets/Sprites/ui/pointer.png" id="2_5dyxl"]
+[ext_resource type="PackedScene" uid="uid://c4hp5q5vqbdqp" path="res://Scenes/gauge.tscn" id="3_bb3fu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4u13r"]
+size = Vector2(0, 14)
+
+[sub_resource type="Animation" id="Animation_e7oth"]
+resource_name = "Hover"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pointer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-58, 0), Vector2(58, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_k5vf0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pointer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-58, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2v2md"]
+_data = {
+&"Hover": SubResource("Animation_e7oth"),
+&"RESET": SubResource("Animation_k5vf0")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gvqo2"]
+size = Vector2(39, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gjv8j"]
+size = Vector2(39, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lvi3r"]
+size = Vector2(16, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mn0lt"]
+size = Vector2(16, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2s8ea"]
+size = Vector2(10, 10)
+
+[node name="QTE" type="Node2D" unique_id=1655114331]
+
+[node name="BarSprite" type="Sprite2D" parent="." unique_id=873325812]
+texture = ExtResource("1_k2nck")
+
+[node name="Pointer" type="Area2D" parent="." unique_id=1239035959]
+position = Vector2(-58, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pointer" unique_id=1778588409]
+shape = SubResource("RectangleShape2D_4u13r")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pointer" unique_id=1430192141]
+position = Vector2(0, -1)
+texture = ExtResource("2_5dyxl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pointer" unique_id=1589157416]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_2v2md")
+autoplay = &"Hover"
+speed_scale = 0.5
+
+[node name="Gauges" type="Node2D" parent="." unique_id=186731161]
+
+[node name="GaugeBad1" parent="Gauges" unique_id=929277608 instance=ExtResource("3_bb3fu")]
+position = Vector2(-44, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gauges/GaugeBad1" unique_id=2017400506]
+position = Vector2(3.5, 0)
+shape = SubResource("RectangleShape2D_gvqo2")
+debug_color = Color(0.95879775, 3.85046e-07, 0.52782404, 0.41960785)
+
+[node name="GaugeBad2" parent="Gauges" unique_id=1531690598 instance=ExtResource("3_bb3fu")]
+position = Vector2(43, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gauges/GaugeBad2" unique_id=767745842]
+position = Vector2(-2.5, 0)
+shape = SubResource("RectangleShape2D_gjv8j")
+debug_color = Color(0.96545416, 2.8878452e-07, 0.4895227, 0.41960785)
+
+[node name="GaugeMedium1" parent="Gauges" unique_id=1424164371 instance=ExtResource("3_bb3fu")]
+position = Vector2(-15, 0)
+Quality = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gauges/GaugeMedium1" unique_id=1760852293]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_lvi3r")
+debug_color = Color(0.6540052, 0.51820755, 5.7756904e-07, 0.41960785)
+
+[node name="GaugeMedium2" parent="Gauges" unique_id=627870971 instance=ExtResource("3_bb3fu")]
+position = Vector2(15, 0)
+Quality = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gauges/GaugeMedium2" unique_id=701678371]
+position = Vector2(-2, 0)
+shape = SubResource("RectangleShape2D_mn0lt")
+debug_color = Color(0.6489632, 0.5207915, 0, 0.41960785)
+
+[node name="Gauge" parent="Gauges" unique_id=4134811 instance=ExtResource("3_bb3fu")]
+Quality = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gauges/Gauge" unique_id=1158102796]
+shape = SubResource("RectangleShape2D_2s8ea")
+debug_color = Color(0, 0.64965355, 0.14748359, 0.41960785)
