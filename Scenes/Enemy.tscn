@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dsnljhajnd12"]
+
+[ext_resource type="Script" uid="uid://x8lg0r2apbnu" path="res://Scripts/Enemy.cs" id="1_m1htj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_klwtp"]
+
+[node name="Enemy" type="CharacterBody2D" unique_id=506923395]
+script = ExtResource("1_m1htj")
+
+[node name="EnemySprite" type="AnimatedSprite2D" parent="." unique_id=1596481829]
+sprite_frames = SubResource("SpriteFrames_klwtp")
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=924869333]
+autostart = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="OnAttackTimerTimeout"]
