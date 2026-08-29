@@ -13,7 +13,6 @@ public partial class Bed : Area2D
 	public override void _Ready()
 	{
 		InputEvent += OnRestButtonInput;
-		this.Action += Global.Instance.OnAction;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
