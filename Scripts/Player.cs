@@ -11,10 +11,12 @@ public partial class Player : CharacterBody2D
 
 	private void TakeDamage()
 	{
-		
+		if (Global.Instance.Health <= 0 && Global.Instance.Outcome == Global.FightOutcome.PENDING){
+			HandleDeath();
+		}
 	}
 
-	private void Die()
+	private void HandleDeath()
 	{
 		
 	}

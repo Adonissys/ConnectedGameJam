@@ -4,4 +4,3 @@
 
 [node name="JailScene" type="Node2D" unique_id=1351055193]
 script = ExtResource("1_q5luu")
-RestButton = null
