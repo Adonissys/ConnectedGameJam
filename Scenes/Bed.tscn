@@ -1,11 +1,15 @@
 [gd_scene format=3 uid="uid://c36m8tvkcvesk"]
 
 [ext_resource type="Script" uid="uid://dhin364wedhq7" path="res://Scripts/Bed.cs" id="1_plytk"]
+[ext_resource type="PackedScene" uid="uid://dwey4vuev80v7" path="res://Scenes/Player.tscn" id="2_8pjge"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ev4kj"]
 
-[node name="Bed" type="Area2D" unique_id=440541105]
+[node name="Bed" type="Area2D" unique_id=440541105 node_paths=PackedStringArray("Player")]
 script = ExtResource("1_plytk")
+Player = NodePath("Player")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1030733622]
 shape = SubResource("RectangleShape2D_ev4kj")
+
+[node name="Player" parent="." unique_id=677085593 instance=ExtResource("2_8pjge")]

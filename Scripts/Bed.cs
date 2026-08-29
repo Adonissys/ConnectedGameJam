@@ -3,7 +3,7 @@ using System;
 
 public partial class Bed : Area2D
 {
-	[Export] private CharacterBody2D Player;
+	[Export] private Player Player;
 	[Signal] public delegate void ActionEventHandler();
 	
 	
@@ -31,8 +31,8 @@ public partial class Bed : Area2D
 	}
 	
 	private void Rest(int heal){
-		if(Global.Instance.Actions > 0){ 
-			// linha em que o jogador recebe vida pelo descanso
+		if(Global.Instance.Actions > 0 && Player.Health < Global.Instance.Health){ 
+			Player.Health += heal;
 			EmitSignal(SignalName.Action);
 			}
 

@@ -7,9 +7,19 @@ public partial class Player : CharacterBody2D
 	[Signal] public delegate void DeathEventHandler();
 
 	[Export] public Enemy CurrentEnemy;
-	[Export] public AnimationPlayer PlayerAnimation
+	[Export] public AnimationPlayer PlayerAnimation;
 
 	private int _health;
+	
+	public int Health
+	{
+		get { return _health; }
+		set 	
+		{	 
+			_health = value; 
+		}
+	}
+	
 	private int _resistance;
 
 	public override void _Ready()
