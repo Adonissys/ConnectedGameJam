@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 public partial class Enemy : CharacterBody2D {
@@ -11,10 +12,20 @@ public partial class Enemy : CharacterBody2D {
 
 	private int _damage;
 	private int _stamina;
+	private int _enemyIndex;
 
-	public void Initialize(int damage, int stamina) {
-		_damage = damage;
-		_stamina = stamina;
+	private List<int> _enemyDamage = new() {
+		10
+	};
+	private List<int> _enemyStamina = new() {
+		10
+	}; 
+
+	public override void _Ready()
+	{
+		_enemyIndex = Global.Instance.CurrentEnemy;
+		_damage = _enemyDamage[_enemyIndex];
+		_stamina = _enemyStamina[_enemyIndex];
 	}
 
 	private async void OnAttackTimerTimeout(){
@@ -23,7 +34,7 @@ public partial class Enemy : CharacterBody2D {
 	}
 
 	private async Task HandleAttack(){
-		EnemySprite.Play("attack");
+		EnemySprite.Play("attack"+_enemyIndex.ToString());
 		await ToSignal(EnemySprite, AnimatedSprite2D.SignalName.AnimationFinished);
 		_stamina -= 10;
 		if (_stamina <= 0){
@@ -32,7 +43,7 @@ public partial class Enemy : CharacterBody2D {
 	}
 
 	private async Task HandleDefeat(){
-		EnemySprite.Play("defeat");
+		EnemySprite.Play("defeat"+_enemyIndex.ToString());
 		await ToSignal(EnemySprite, AnimatedSprite2D.SignalName.AnimationFinished);
 		EmitSignal(SignalName.Defeat);
 	}

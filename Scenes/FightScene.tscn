@@ -1,3 +1,12 @@
 [gd_scene format=3 uid="uid://d4j04u8e6osgn"]
 
+[ext_resource type="Script" uid="uid://dlxt8k5jf3oj4" path="res://Scripts/FightScene.cs" id="1_s2r8q"]
+[ext_resource type="PackedScene" uid="uid://dsnljhajnd12" path="res://Scenes/Enemy.tscn" id="2_7gx8k"]
+[ext_resource type="PackedScene" uid="uid://dwey4vuev80v7" path="res://Scenes/Player.tscn" id="3_ku2io"]
+
 [node name="FightScene" type="Node2D" unique_id=1944087654]
+script = ExtResource("1_s2r8q")
+
+[node name="Enemy" parent="." unique_id=506923395 instance=ExtResource("2_7gx8k")]
+
+[node name="Player" parent="." unique_id=677085593 instance=ExtResource("3_ku2io")]
