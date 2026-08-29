@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://2u27ayg6t6bv"]
 
+[ext_resource type="Script" uid="uid://dcvfb6jpqiiak" path="res://Scripts/Qte.cs" id="1_5dyxl"]
 [ext_resource type="Texture2D" uid="uid://b3rili0i07iwr" path="res://Assets/Sprites/ui/exercise_bar.png" id="1_k2nck"]
 [ext_resource type="Texture2D" uid="uid://bpxk6bvxdrdb1" path="res://Assets/Sprites/ui/pointer.png" id="2_5dyxl"]
 [ext_resource type="PackedScene" uid="uid://c4hp5q5vqbdqp" path="res://Scenes/gauge.tscn" id="3_bb3fu"]
@@ -59,7 +60,10 @@ size = Vector2(16, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2s8ea"]
 size = Vector2(10, 10)
 
-[node name="QTE" type="Node2D" unique_id=1655114331]
+[node name="QTE" type="Node2D" unique_id=1655114331 node_paths=PackedStringArray("Gauges", "PointerAnimation")]
+script = ExtResource("1_5dyxl")
+Gauges = [NodePath("Gauges/GaugeBad1"), NodePath("Gauges/GaugeBad2"), NodePath("Gauges/GaugeMedium1"), NodePath("Gauges/GaugeMedium2"), NodePath("Gauges/GaugeGood")]
+PointerAnimation = NodePath("Pointer/AnimationPlayer")
 
 [node name="BarSprite" type="Sprite2D" parent="." unique_id=873325812]
 texture = ExtResource("1_k2nck")
@@ -77,7 +81,6 @@ texture = ExtResource("2_5dyxl")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pointer" unique_id=1589157416]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_2v2md")
-autoplay = &"Hover"
 speed_scale = 0.5
 
 [node name="Gauges" type="Node2D" parent="." unique_id=186731161]
@@ -116,9 +119,9 @@ position = Vector2(-2, 0)
 shape = SubResource("RectangleShape2D_mn0lt")
 debug_color = Color(0.6489632, 0.5207915, 0, 0.41960785)
 
-[node name="Gauge" parent="Gauges" unique_id=4134811 instance=ExtResource("3_bb3fu")]
+[node name="GaugeGood" parent="Gauges" unique_id=4134811 instance=ExtResource("3_bb3fu")]
 Quality = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gauges/Gauge" unique_id=1158102796]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gauges/GaugeGood" unique_id=1158102796]
 shape = SubResource("RectangleShape2D_2s8ea")
 debug_color = Color(0, 0.64965355, 0.14748359, 0.41960785)

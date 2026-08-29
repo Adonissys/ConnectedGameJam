@@ -24,7 +24,7 @@ public partial class Player : CharacterBody2D
 
 	public override void _Ready()
 	{
-		CurrentEnemy.Attack += OnEnemyAttack;
+		// CurrentEnemy.Attack += OnEnemyAttack;
 		PlayerAnimation.AnimationFinished += OnAnimationFinished;
 		_health = Global.Instance.Health;
 		_resistance = Global.Instance.Resistance;

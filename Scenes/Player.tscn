@@ -1,13 +1,30 @@
 [gd_scene format=3 uid="uid://dwey4vuev80v7"]
 
 [ext_resource type="Script" uid="uid://csibvoyygl5ql" path="res://Scripts/Player.cs" id="1_kyqiw"]
-[ext_resource type="Texture2D" uid="uid://b3h1eqaa0sana" path="res://icon.svg" id="2_gntrk"]
+[ext_resource type="Texture2D" uid="uid://bepeyqtysagtv" path="res://Assets/Sprites/entities/idle_player.png" id="2_kyqiw"]
 
-[node name="Player" type="CharacterBody2D" unique_id=677085593]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gntrk"]
+atlas = ExtResource("2_kyqiw")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4u13r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gntrk")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D" unique_id=677085593 node_paths=PackedStringArray("PlayerAnimation")]
 script = ExtResource("1_kyqiw")
+PlayerAnimation = NodePath("AnimationPlayer")
 
-[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=1291476761]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_gntrk")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=810230507]
+sprite_frames = SubResource("SpriteFrames_4u13r")
+animation = &"Idle"
+autoplay = "Idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1349220938]

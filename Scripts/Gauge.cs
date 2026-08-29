@@ -17,7 +17,7 @@ public partial class Gauge : Area2D
 
 	public override void _Process(double delta)
 	{
-		if (PointerInGauge)
+		if (PointerInGauge && CanRecieveInput)
 		{
 			if (Input.IsActionJustPressed("interact"))
 			{
