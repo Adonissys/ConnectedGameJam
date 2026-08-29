@@ -1,12 +1,61 @@
 [gd_scene format=3 uid="uid://c36m8tvkcvesk"]
 
 [ext_resource type="Script" uid="uid://dhin364wedhq7" path="res://Scripts/Bed.cs" id="1_plytk"]
+[ext_resource type="Texture2D" uid="uid://cx4j4ayis4er8" path="res://Assets/Sprites/scenneries/bed.png" id="2_8pjge"]
+[ext_resource type="Texture2D" uid="uid://b7ewgixhh85y6" path="res://Assets/Sprites/entities/player_sleep.png" id="3_mmr2t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mc1n3"]
+atlas = ExtResource("3_mmr2t")
+region = Rect2(0, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vals"]
+atlas = ExtResource("3_mmr2t")
+region = Rect2(32, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7oau4"]
+atlas = ExtResource("3_mmr2t")
+region = Rect2(64, 0, 32, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gvqo2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mc1n3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vals")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7oau4")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ev4kj"]
+size = Vector2(44, 20)
 
-[node name="Bed" type="Area2D" unique_id=440541105 node_paths=PackedStringArray("Player")]
+[node name="Bed" type="Area2D" unique_id=440541105 node_paths=PackedStringArray("PlayerSprite", "SleepTimer")]
 script = ExtResource("1_plytk")
-Player = NodePath("")
+PlayerSprite = NodePath("AnimatedSprite2D")
+SleepTimer = NodePath("SleepTimer")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1200545969]
+texture = ExtResource("2_8pjge")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1984004550]
+position = Vector2(6, -3)
+sprite_frames = SubResource("SpriteFrames_gvqo2")
+autoplay = "default"
+frame_progress = 0.4436541
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1030733622]
+position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_ev4kj")
+
+[node name="SleepTimer" type="Timer" parent="." unique_id=180715085]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="SleepTimer" to="." method="OnSleepTimerTimeout"]

@@ -5,29 +5,36 @@ public partial class Gym : Area2D
 {
 	[Signal] public delegate void GymCalledEventHandler();
 	[Export] private AnimatedSprite2D Sprite;
+	[Export] private Player Player;
+	[Export] private AnimatedSprite2D PlayerSprite;
+	[Export] private Qte qte;
 	private bool WorkingOut = false;	
 	[Signal] public delegate void ActionEventHandler();
 	
-
 	public override void _Ready()
 	{
+		qte.QteFinished += OnQteFinished;
 	}
 
 	private void WorkOut()
 	{
 
-		if(WorkingOut && Global.Instance.Actions == 0) return;
+		if(WorkingOut || Global.Instance.Actions == 0) return;
 
 		WorkingOut = true;
 		EmitSignal(SignalName.GymCalled);
 		EmitSignal(SignalName.Action);
-		Sprite.Play("WorkOut");
+		Sprite.Play("Active");
+		Player.Visible = false;
+		PlayerSprite.Visible = true;
 	}
 
 	public void StopWorkingOut()
 	{
 		WorkingOut = false;
-		Sprite.Play("Idle");
+		Sprite.Play("Inactive");
+		PlayerSprite.Visible = false;
+		Player.Visible = true;
 	}
 
 	private void Outline(bool enabled)
@@ -53,11 +60,15 @@ public partial class Gym : Area2D
 		Outline(false);
 	}
 
+	private void OnQteFinished()
+	{
+		StopWorkingOut();
+	}
+
 	private void OnInputEvent(Node viewport, InputEvent @event, long shapeIdx)
 	{
 		if(@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed && mouseEvent.ButtonIndex == MouseButton.Left){
 			WorkOut();
-			GD.Print("Fui clicado");
 		}		
 	}
 }

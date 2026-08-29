@@ -1,10 +1,39 @@
 [gd_scene format=3 uid="uid://dh0ss0b2occk"]
 
 [ext_resource type="Script" uid="uid://diyuowclirb1g" path="res://Scripts/JailScene.cs" id="1_q5luu"]
-[ext_resource type="PackedScene" uid="uid://2u27ayg6t6bv" path="res://Scenes/qte.tscn" id="2_47hln"]
+[ext_resource type="Texture2D" uid="uid://d1lrponbsjb01" path="res://Assets/Sprites/scenneries/room.png" id="2_5bafw"]
+[ext_resource type="PackedScene" uid="uid://bgs85dagwroy3" path="res://Scenes/GameManager.tscn" id="2_ov00r"]
+[ext_resource type="PackedScene" uid="uid://c36m8tvkcvesk" path="res://Scenes/Bed.tscn" id="3_fmbpm"]
+[ext_resource type="PackedScene" uid="uid://4fpci4ya6edk" path="res://Scenes/Gym.tscn" id="4_f5uda"]
+[ext_resource type="PackedScene" uid="uid://dwey4vuev80v7" path="res://Scenes/Player.tscn" id="5_fmbpm"]
+[ext_resource type="PackedScene" uid="uid://cal0j58kodw61" path="res://Scenes/Hud.tscn" id="7_hemwc"]
 
 [node name="JailScene" type="Node2D" unique_id=1351055193]
 script = ExtResource("1_q5luu")
 
-[node name="QTE" parent="." unique_id=1655114331 instance=ExtResource("2_47hln")]
-position = Vector2(81, 84)
+[node name="GameManager" parent="." unique_id=1334006372 node_paths=PackedStringArray("bed", "gym", "hud") instance=ExtResource("2_ov00r")]
+bed = NodePath("../Bed")
+gym = NodePath("../Gym")
+hud = NodePath("../CanvasLayer/Hud")
+
+[node name="Backgorund" type="Sprite2D" parent="." unique_id=843825956]
+position = Vector2(80, 80)
+texture = ExtResource("2_5bafw")
+
+[node name="Bed" parent="." unique_id=440541105 node_paths=PackedStringArray("Player") instance=ExtResource("3_fmbpm")]
+position = Vector2(117, 113)
+Player = NodePath("../Player")
+
+[node name="Gym" parent="." unique_id=1985391776 node_paths=PackedStringArray("Player", "qte") instance=ExtResource("4_f5uda")]
+position = Vector2(43, 113)
+Player = NodePath("../Player")
+qte = NodePath("../CanvasLayer/Hud/QuickTimeEvent/QTE")
+
+[node name="Player" parent="." unique_id=677085593 instance=ExtResource("5_fmbpm")]
+position = Vector2(80, 117)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=899347090]
+
+[node name="Hud" parent="CanvasLayer" unique_id=1014208201 instance=ExtResource("7_hemwc")]
+
+[editable path="CanvasLayer/Hud"]

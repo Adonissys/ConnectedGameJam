@@ -12,6 +12,7 @@ public partial class GameManager : Node
 	{
 		bed.Action += OnAction;
 		gym.Action += OnAction;
+		gym.GymCalled += OnGymCalled;
 		hud.FightStarted += OnFightStarted;
 	}
 
@@ -29,5 +30,11 @@ public partial class GameManager : Node
 			Global.Instance.Actions -= 1;
 		}
 
-}
+ 	}
+
+	private void OnGymCalled()
+	{
+		hud.ShowQuickTimeEvent();
+	}
+
 }

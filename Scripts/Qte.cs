@@ -1,10 +1,12 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Drawing;
 
 public partial class Qte : Node2D
 {
-	[Export] public Godot.Collections.Array<Gauge> Gauges {get; set;}
+	[Signal] public delegate void QteFinishedEventHandler();
+	[Export] public Array<Gauge> Gauges { get; set; } = new();
 	[Export] private AnimationPlayer PointerAnimation;
 	private int _chances = 0;
 	public int Chances
@@ -17,7 +19,7 @@ public partial class Qte : Node2D
 			{
 				DeactivateQte();
 			} 
-			_chances= value;
+			_chances = value;
 		}
 	}
 
@@ -32,20 +34,26 @@ public partial class Qte : Node2D
 
 	public void ActivateQte()
 	{
+		GD.Print("ActivateQte called!"); 
+		GD.Print($"Gauges count: {Gauges?.Count ?? 0}");
 		Chances = 3;
 
 		Visible = true;
 
 		foreach(Gauge gauge in Gauges)
 		{
+			GD.Print("Inside foreach loop"); 
 			gauge.CanRecieveInput = true;
+			GD.Print($"Activated gauge, CanRecieveInput = {gauge.CanRecieveInput}");
 		}
 
-		PointerAnimation.Play("hover");
+		PointerAnimation.Play("Hover");
 	}
 
 	public void DeactivateQte()
 	{
+		EmitSignal(SignalName.QteFinished);
+		
 		Visible = false;
 
 		foreach(Gauge gauge in Gauges)
@@ -59,7 +67,7 @@ public partial class Qte : Node2D
 	private void OnGaugeSelected(Gauge.GaugeQuality gaugeQuality)
 	{
 		Chances --;
-		
+
 		switch (gaugeQuality)
 		{
 			case Gauge.GaugeQuality.Bad:
