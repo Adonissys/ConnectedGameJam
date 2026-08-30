@@ -30,21 +30,36 @@ public partial class Qte : Node2D
 		{
 			gauge.GaugeSelected += OnGaugeSelected;
 		}
+
+		DeactivateQte();
 	}
+
+    public override void _Process(double delta)
+    {
+        // Handle input here instead of in each gauge
+        if (Input.IsActionJustPressed("interact"))
+        {
+            foreach(Gauge gauge in Gauges)
+            {
+                if (gauge.IsPointerInGauge && gauge.CanRecieveInput)
+                {
+					GD.Print(gauge.Quality);
+                    OnGaugeSelected(gauge.Quality);
+                    return; // Exit after first gauge responds
+                }
+            }
+        }
+    }
 
 	public void ActivateQte()
 	{
-		GD.Print("ActivateQte called!"); 
-		GD.Print($"Gauges count: {Gauges?.Count ?? 0}");
 		Chances = 3;
 
 		Visible = true;
 
 		foreach(Gauge gauge in Gauges)
 		{
-			GD.Print("Inside foreach loop"); 
 			gauge.CanRecieveInput = true;
-			GD.Print($"Activated gauge, CanRecieveInput = {gauge.CanRecieveInput}");
 		}
 
 		PointerAnimation.Play("Hover");
@@ -58,7 +73,7 @@ public partial class Qte : Node2D
 
 		foreach(Gauge gauge in Gauges)
 		{
-			gauge.CanRecieveInput = false;
+			gauge.ResetGaugeState();
 		}		
 
 		PointerAnimation.Play("RESET");

@@ -8,6 +8,7 @@ public partial class Gym : Area2D
 	[Export] private Player Player;
 	[Export] private AnimatedSprite2D PlayerSprite;
 	[Export] private Qte qte;
+	[Export] private AnimationPlayer OutlineAnim;
 	private bool WorkingOut = false;	
 	[Signal] public delegate void ActionEventHandler();
 	
@@ -42,16 +43,17 @@ public partial class Gym : Area2D
 		switch (enabled)
 		{
 			case true:
-				//Outline.Play("DisplayOutline");
+				OutlineAnim.Play("OutlineOn");
 				break;
 			case false:
-				//Outline.Play("StopOutline");
+				OutlineAnim.Play("OutlineOff");
 				break;
 		}
 	}
 
 	private void OnMouseEntered()
 	{
+		if(WorkingOut) return;
 		Outline(true);
 	}
 

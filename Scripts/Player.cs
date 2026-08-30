@@ -26,7 +26,7 @@ public partial class Player : CharacterBody2D
 	{
 		// CurrentEnemy.Attack += OnEnemyAttack;
 		PlayerAnimation.AnimationFinished += OnAnimationFinished;
-		_health = Global.Instance.Health;
+		Health = Global.Instance.Health;
 		_resistance = Global.Instance.Resistance;
 
 		//PlayerAnimation.Play("idle");
@@ -41,9 +41,9 @@ public partial class Player : CharacterBody2D
 
 	private void TakeDamage(int damageTaken)
 	{
-		_health -= (damageTaken-_resistance);
+		Health -= (damageTaken-_resistance);
 		//PlayerAnimation.Play("hurt");
-		if (_health <= 0 && Global.Instance.Outcome == Global.FightOutcome.PENDING){
+		if (Health <= 0 && Global.Instance.Outcome == Global.FightOutcome.PENDING){
 			HandleDeath();
 		}
 	}

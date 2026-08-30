@@ -13,10 +13,12 @@ public partial class Global : Node
 	}
 	public FightOutcome Outcome { get; set; }
 
+	public const int MaxHealth = 50;
 	private int _health = 0;
-	public int Health{
+	public int Health
+	{
 		get => _health; 
-		set => _health = Math.Max(0, value);
+		set => _health = Math.Clamp(value, 0, MaxHealth);
 	}
 	
 	public int Resistance{get; set;} = 0;

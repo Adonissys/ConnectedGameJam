@@ -7,6 +7,7 @@ public partial class Bed : Area2D
 	[Signal] public delegate void ActionEventHandler();
 	[Export] private AnimatedSprite2D PlayerSprite;
 	[Export] private Timer SleepTimer;
+	[Export] private AnimationPlayer OutlineAnim;
 	private bool IsSleeping = false;
 	
 	
@@ -50,6 +51,30 @@ public partial class Bed : Area2D
 		IsSleeping = false;
 		PlayerSprite.Visible = false;
 		Player.Visible = true;
-		Rest(1);
+		Rest(15);
+	}
+
+	private void Outline(bool enabled)
+	{
+		switch (enabled)
+		{
+			case true:
+				OutlineAnim.Play("OutlineOn");
+				break;
+			case false:
+				OutlineAnim.Play("OutlineOff");
+				break;
+		}
+	}
+
+	private void OnMouseEntered()
+	{
+		if(IsSleeping) return;
+		Outline(true);
+	}
+
+	private void OnMouseExited()
+	{
+		Outline(false);
 	}
 }

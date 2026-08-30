@@ -2,7 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dhin364wedhq7" path="res://Scripts/Bed.cs" id="1_plytk"]
 [ext_resource type="Texture2D" uid="uid://cx4j4ayis4er8" path="res://Assets/Sprites/scenneries/bed.png" id="2_8pjge"]
+[ext_resource type="Shader" uid="uid://cb27u0dc0ulsr" path="res://Shaders/Outline.gdshader" id="2_mc1n3"]
 [ext_resource type="Texture2D" uid="uid://b7ewgixhh85y6" path="res://Assets/Sprites/entities/player_sleep.png" id="3_mmr2t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8vals"]
+shader = ExtResource("2_mc1n3")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_size = 1
+shader_parameter/outline_enabled = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mc1n3"]
 atlas = ExtResource("3_mmr2t")
@@ -36,12 +43,68 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ev4kj"]
 size = Vector2(44, 20)
 
-[node name="Bed" type="Area2D" unique_id=440541105 node_paths=PackedStringArray("PlayerSprite", "SleepTimer")]
+[sub_resource type="Animation" id="Animation_7oau4"]
+resource_name = "OutlineOff"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/outline_enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_7hvm3"]
+resource_name = "OutlineOn"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/outline_enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_juik6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/outline_enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w0k0n"]
+_data = {
+&"OutlineOff": SubResource("Animation_7oau4"),
+&"OutlineOn": SubResource("Animation_7hvm3"),
+&"RESET": SubResource("Animation_juik6")
+}
+
+[node name="Bed" type="Area2D" unique_id=440541105 node_paths=PackedStringArray("PlayerSprite", "SleepTimer", "OutlineAnim")]
 script = ExtResource("1_plytk")
 PlayerSprite = NodePath("AnimatedSprite2D")
 SleepTimer = NodePath("SleepTimer")
+OutlineAnim = NodePath("OutlineAnim")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1200545969]
+material = SubResource("ShaderMaterial_8vals")
 texture = ExtResource("2_8pjge")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1984004550]
@@ -58,4 +121,9 @@ shape = SubResource("RectangleShape2D_ev4kj")
 wait_time = 2.0
 one_shot = true
 
+[node name="OutlineAnim" type="AnimationPlayer" parent="." unique_id=165939017]
+libraries/ = SubResource("AnimationLibrary_w0k0n")
+
+[connection signal="mouse_entered" from="." to="." method="OnMouseEntered"]
+[connection signal="mouse_exited" from="." to="." method="OnMouseExited"]
 [connection signal="timeout" from="SleepTimer" to="." method="OnSleepTimerTimeout"]
