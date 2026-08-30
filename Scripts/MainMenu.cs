@@ -24,7 +24,7 @@ public partial class MainMenu : Control
 	}
 	
 	private void OnPlayMouseEntered(){
-		Play.AddThemeColorOverride("font_outline_color", Color.Color8(169,73,73));
+		Play.AddThemeColorOverride("font_outline_color", Color.Color8(99,97,103));
 	}
 	
 	private void OnPlayMouseExited(){
@@ -32,7 +32,7 @@ public partial class MainMenu : Control
 	}
 	
 	private void OnQuitMouseEntered(){
-		Quit.AddThemeColorOverride("font_outline_color", Color.Color8(169,73,73));
+		Quit.AddThemeColorOverride("font_outline_color", Color.Color8(99,97,103));
 	}
 	
 	private void OnQuitMouseExited(){

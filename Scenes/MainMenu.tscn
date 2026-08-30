@@ -1,16 +1,64 @@
 [gd_scene format=3 uid="uid://dyngc7pkuht7"]
 
 [ext_resource type="Script" uid="uid://bt56jyu5tvrdg" path="res://Scripts/MainMenu.cs" id="1_tt5f1"]
+[ext_resource type="FontFile" uid="uid://c4ri0rpjyi3tp" path="res://Assets/Fonts/CozetteVector.ttf" id="2_df05h"]
+[ext_resource type="Texture2D" uid="uid://lec6ep3lk3kb" path="res://Assets/Sprites/ui/big_btn_idle.png" id="3_8um5k"]
+[ext_resource type="Texture2D" uid="uid://b45juuolsp7pu" path="res://Assets/Sprites/ui/big_btn_pressed.png" id="4_xim88"]
+[ext_resource type="Texture2D" uid="uid://dstypl0fgvavv" path="res://Assets/Sprites/ui/big_btn_hover.png" id="5_koqhg"]
+[ext_resource type="Texture2D" uid="uid://cvuatxfjebjh8" path="res://Assets/Sprites/ui/big_btn_disabled.png" id="6_8um5k"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bnhvo"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_of4js"]
+texture = ExtResource("3_8um5k")
+texture_margin_left = 10.0
+texture_margin_top = 1.0
+texture_margin_right = 10.0
+texture_margin_bottom = 1.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tt5f1"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tekhq"]
+texture = ExtResource("4_xim88")
+texture_margin_left = 10.0
+texture_margin_top = 1.0
+texture_margin_right = 10.0
+texture_margin_bottom = 1.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_853f1"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s6jvp"]
+texture = ExtResource("5_koqhg")
+texture_margin_left = 10.0
+texture_margin_top = 1.0
+texture_margin_right = 10.0
+texture_margin_bottom = 1.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8saeu"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cmrfp"]
+texture = ExtResource("6_8um5k")
+texture_margin_left = 10.0
+texture_margin_top = 1.0
+texture_margin_right = 10.0
+texture_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ghw46"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8um5k"]
+texture = ExtResource("3_8um5k")
+texture_margin_left = 10.0
+texture_margin_top = 1.0
+texture_margin_right = 10.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xim88"]
+texture = ExtResource("3_8um5k")
+texture_margin_left = 10.0
+texture_margin_top = 1.0
+texture_margin_right = 10.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_koqhg"]
+texture = ExtResource("5_koqhg")
+texture_margin_left = 10.0
+texture_margin_top = 1.0
+texture_margin_right = 10.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8saeu"]
 
 [node name="MainMenu" type="Control" unique_id=2036237437 node_paths=PackedStringArray("Play", "Quit")]
 layout_mode = 3
@@ -44,6 +92,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.92941177, 0.89411765, 0.85490197, 1)
 theme_override_colors/font_outline_color = Color(0.20784314, 0.20784314, 0.2509804, 1)
 theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_df05h")
 text = "Tireless Gladiator"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1019527124]
@@ -68,11 +117,12 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.92941177, 0.89411765, 0.85490197, 1)
 theme_override_colors/font_outline_color = Color(0.20784314, 0.20784314, 0.2509804, 1)
 theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_df05h")
 theme_override_font_sizes/font_size = 8
-theme_override_styles/normal = SubResource("StyleBoxEmpty_bnhvo")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_tt5f1")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_853f1")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_8saeu")
+theme_override_styles/normal = SubResource("StyleBoxTexture_of4js")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_tekhq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_s6jvp")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_cmrfp")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ghw46")
 text = "Play"
 
@@ -81,10 +131,11 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.92941177, 0.89411765, 0.85490197, 1)
 theme_override_colors/font_outline_color = Color(0.20784314, 0.20784314, 0.2509804, 1)
 theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_df05h")
 theme_override_font_sizes/font_size = 8
-theme_override_styles/normal = SubResource("StyleBoxEmpty_bnhvo")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_tt5f1")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_853f1")
+theme_override_styles/normal = SubResource("StyleBoxTexture_8um5k")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_xim88")
+theme_override_styles/hover = SubResource("StyleBoxTexture_koqhg")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_8saeu")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ghw46")
 text = "Quit"
