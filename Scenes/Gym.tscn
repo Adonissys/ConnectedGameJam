@@ -169,6 +169,7 @@ libraries/ = SubResource("AnimationLibrary_63rb4")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=243191539]
 stream = ExtResource("6_s1geo")
+volume_db = 20.0
 
 [connection signal="input_event" from="." to="." method="OnInputEvent"]
 [connection signal="mouse_entered" from="." to="." method="OnMouseEntered"]
