@@ -22,14 +22,16 @@ hud = NodePath("../CanvasLayer/Hud")
 position = Vector2(80, 80)
 texture = ExtResource("2_5bafw")
 
-[node name="Bed" parent="." unique_id=440541105 node_paths=PackedStringArray("Player") instance=ExtResource("3_fmbpm")]
+[node name="Bed" parent="." unique_id=440541105 node_paths=PackedStringArray("Player", "FightButton") instance=ExtResource("3_fmbpm")]
 position = Vector2(117, 113)
 Player = NodePath("../Player")
+FightButton = NodePath("../CanvasLayer/Hud/MarginContainer2/FightButton")
 
-[node name="Gym" parent="." unique_id=1985391776 node_paths=PackedStringArray("Player", "qte") instance=ExtResource("4_f5uda")]
+[node name="Gym" parent="." unique_id=1985391776 node_paths=PackedStringArray("Player", "qte", "FightButton") instance=ExtResource("4_f5uda")]
 position = Vector2(43, 113)
 Player = NodePath("../Player")
 qte = NodePath("../CanvasLayer/Hud/QuickTimeEvent/QTE")
+FightButton = NodePath("../CanvasLayer/Hud/MarginContainer2/FightButton")
 
 [node name="Player" parent="." unique_id=677085593 instance=ExtResource("5_fmbpm")]
 position = Vector2(80, 117)
