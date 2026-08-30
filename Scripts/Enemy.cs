@@ -24,7 +24,7 @@ public partial class Enemy : CharacterBody2D {
 		new Color("#a94949"),
 	};
 	private List<int> _enemyDamage = new() {
-		5, 8, 12
+		7, 11, 15
 	};
 	private List<int> _enemyStamina = new() {
 		80, 100, 130
