@@ -38,7 +38,6 @@ public partial class Player : CharacterBody2D
 	{
 		Health -= (damageTaken-_resistance);
 		PlayerSprite.Play("hurt");
-		GD.Print(Health);
 		if (Health <= 0 && Global.Instance.Outcome == Global.FightOutcome.PENDING){
 			HandleDeath();
 		}

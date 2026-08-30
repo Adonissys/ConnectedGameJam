@@ -49,17 +49,24 @@ public partial class Enemy : CharacterBody2D {
 	}
 
 	private async Task HandleAttack(){
+		if (Global.Instance.Outcome != Global.FightOutcome.PENDING) return;
+
 		Audio.Stream = PunchAudio;
-		EnemySprite.Play("attack"+_enemyIndex.ToString());
+		//EnemySprite.Play("attack"+_enemyIndex.ToString());
+		EnemySprite.Play("attack");
 		Audio.Play();
 		await ToSignal(EnemySprite, AnimatedSprite2D.SignalName.AnimationFinished);
+
+		if (Global.Instance.Outcome != Global.FightOutcome.PENDING) return;
+
 		EmitSignal(SignalName.Attack, _damage);
 		_stamina -= 10;
 	}
 
 	private async Task HandleDefeat(){
 		Global.Instance.Outcome = Global.FightOutcome.PLAYER_WON;
-		EnemySprite.Play("defeat"+_enemyIndex.ToString());
+		//EnemySprite.Play("defeat"+_enemyIndex.ToString());
+		EnemySprite.Play("defeat");
 		await ToSignal(EnemySprite, AnimatedSprite2D.SignalName.AnimationFinished);
 		EmitSignal(SignalName.Defeat);
 	}

@@ -9,6 +9,7 @@ public partial class FightScene : Node2D
 	[Export] public AnimationPlayer TransitionAnimation;
 	[Export] private AudioStreamPlayer2D SFX;
 	[Export] private AudioStreamPlayer Soundtrack;
+	[Export] public Timer TransitionTimer;
 
 	private AudioStream WinAudio;
 	private AudioStream DefeatAudio;
@@ -20,6 +21,7 @@ public partial class FightScene : Node2D
 		CurrentEnemy.Defeat += OnEnemyDefeat;
 		CurrentPlayer.Death += OnPlayerDeath;
 		TransitionAnimation.AnimationFinished += OnAnimationFinished;
+		TransitionTimer.Timeout += OnTransitionTimerTimeout;
 
 		Global.Instance.Outcome = Global.FightOutcome.PENDING;
 		
@@ -39,7 +41,7 @@ public partial class FightScene : Node2D
 		SFX.Stream = DefeatAudio;
 		SFX.Play();
 		
-		fightEnded = true;
+		TransitionTimer.Start();
 	}
 
 	private void OnEnemyDefeat(){
@@ -47,6 +49,10 @@ public partial class FightScene : Node2D
 		SFX.Stream = WinAudio;
 		SFX.Play();
 		
+		TransitionTimer.Start();
+	}
+
+	private void OnTransitionTimerTimeout(){
 		fightEnded = true;
 	}
 
@@ -65,4 +71,5 @@ public partial class FightScene : Node2D
 		}
 		GetTree().ChangeSceneToFile(nextScene);
 	}
+	
 }
