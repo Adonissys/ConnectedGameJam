@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://s7t06a3enx6s" path="res://Scripts/Hud.cs" id="1_chfh5"]
 [ext_resource type="PackedScene" uid="uid://2u27ayg6t6bv" path="res://Scenes/qte.tscn" id="2_8vcfy"]
+[ext_resource type="Texture2D" uid="uid://c7wks1ukwsamc" path="res://Assets/Sprites/ui/hud_base.png" id="2_puttd"]
 
-[node name="Hud" type="Control" unique_id=1014208201 node_paths=PackedStringArray("FightButton", "qte")]
+[node name="Hud" type="Control" unique_id=1014208201 node_paths=PackedStringArray("qte", "HealthLabel", "ResistanceLabel", "ActionsLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,8 +13,41 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_chfh5")
-FightButton = NodePath("")
 qte = NodePath("QuickTimeEvent/QTE")
+HealthLabel = NodePath("StatsMarginContainer/VBoxContainer/HealthLabel")
+ResistanceLabel = NodePath("StatsMarginContainer/VBoxContainer/ResistanceLabel")
+ActionsLabel = NodePath("ActionsMarginContainer/ActionLabel")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=510989851]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer" unique_id=818176039]
+layout_mode = 2
+texture = ExtResource("2_puttd")
+stretch_mode = 4
+
+[node name="StatsMarginContainer" type="MarginContainer" parent="." unique_id=385713468]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 17
+theme_override_constants/margin_top = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatsMarginContainer" unique_id=967125929]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="HealthLabel" type="Label" parent="StatsMarginContainer/VBoxContainer" unique_id=582231136]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6627451, 0.28627452, 0.28627452, 1)
+text = "25/50"
+
+[node name="ResistanceLabel" type="Label" parent="StatsMarginContainer/VBoxContainer" unique_id=878661526]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.5529412, 0.6627451, 1)
+text = "40"
 
 [node name="QuickTimeEvent" type="Control" parent="." unique_id=514444363]
 layout_mode = 1
@@ -26,3 +60,19 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="QTE" parent="QuickTimeEvent" unique_id=1655114331 instance=ExtResource("2_8vcfy")]
+
+[node name="ActionsMarginContainer" type="MarginContainer" parent="." unique_id=1321845409]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 7
+
+[node name="ActionLabel" type="Label" parent="ActionsMarginContainer" unique_id=1702425953]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8901961, 0.5764706, 0.2784314, 1)
+text = "Act.:1/3"
