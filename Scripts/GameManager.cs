@@ -18,6 +18,24 @@ public partial class GameManager : Node
 		Global.Instance.ResistanceChanged += OnResistanceChanged;
 	}
 
+    public override void _ExitTree()
+    {
+       
+        if (bed != null) bed.Action -= OnAction;
+        if (gym != null)
+        {
+            gym.Action -= OnAction;
+            gym.GymCalled -= OnGymCalled;
+        }
+        if (hud != null) hud.FightStarted -= OnFightStarted;
+        if (Global.Instance != null)
+        {
+            Global.Instance.ActionChanged -= OnActionChanged;
+            Global.Instance.HealthChanged -= OnHealthChanged;
+            Global.Instance.ResistanceChanged -= OnResistanceChanged;
+        }
+    }
+
 	private void OnFightStarted(){
 		Global.Instance.Actions = 3;
 	}

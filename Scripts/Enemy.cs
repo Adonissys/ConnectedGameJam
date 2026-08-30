@@ -19,10 +19,10 @@ public partial class Enemy : CharacterBody2D {
 	private int _enemyIndex;
 
 	private List<int> _enemyDamage = new() {
-		10
+		50, 75, 100
 	};
 	private List<int> _enemyStamina = new() {
-		20
+		100, 120, 150
 	}; 
 
 	public override void _Ready(){

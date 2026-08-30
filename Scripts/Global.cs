@@ -54,6 +54,7 @@ public partial class Global : Node
 		}
 	}
 
+	public const int MaxEnemy = 3;
 	public int CurrentEnemy{get; set;} = 0;
 	
 	public override void _Ready()
