@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class EndingScene : Node2D
+public partial class EndingScene : Control
 {
 	[Export] public Timer SceneTimer;
 

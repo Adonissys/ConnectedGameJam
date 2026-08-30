@@ -18,12 +18,18 @@ public partial class Enemy : CharacterBody2D {
 	private int _stamina;
 	private int _enemyIndex;
 
+	private List<Color> _enemyColor = new() {
+		new Color("#eeb551"),
+		new Color("#e56f4b"),
+		new Color("#a94949"),
+	};
 	private List<int> _enemyDamage = new() {
-		50, 75, 100
+		5, 8, 12
 	};
 	private List<int> _enemyStamina = new() {
-		100, 120, 150
+		80, 100, 130
 	}; 
+	
 
 	public override void _Ready(){
 		_enemyIndex = Global.Instance.CurrentEnemy;
@@ -33,6 +39,11 @@ public partial class Enemy : CharacterBody2D {
 		AttackTimer.Timeout += OnAttackTimerTimeout;
 		
 		PunchAudio = GD.Load<AudioStream>("res://Audio/SFX/soco3.ogg");
+
+		var shaderMat = EnemySprite.Material as ShaderMaterial;
+		if (shaderMat != null){
+			shaderMat.SetShaderParameter("replacement_color", _enemyColor[_enemyIndex]);
+		}
 	}
 
 	public override void _Process(double _delta){

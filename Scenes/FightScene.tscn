@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dsnljhajnd12" path="res://Scenes/Enemy.tscn" id="2_7gx8k"]
 [ext_resource type="Texture2D" uid="uid://d0cp60mrb0le1" path="res://Assets/Sprites/scenneries/arena.png" id="2_ku2io"]
 [ext_resource type="PackedScene" uid="uid://dwey4vuev80v7" path="res://Scenes/Player.tscn" id="3_ku2io"]
+[ext_resource type="PackedScene" uid="uid://ie1m7y4sawlq" path="res://Scenes/FightHud.tscn" id="5_340lh"]
 [ext_resource type="AudioStream" uid="uid://copdcpcsiy8g8" path="res://Audio/Soundtrack/batalha.ogg" id="5_o0maf"]
 
 [sub_resource type="Animation" id="Animation_ku2io"]
@@ -62,13 +63,15 @@ position = Vector2(96, 121)
 position = Vector2(56, 126)
 CurrentEnemy = NodePath("../Enemy")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2090891204]
+libraries/ = SubResource("AnimationLibrary_340lh")
+
+[node name="FightHud" parent="." unique_id=1179506759 instance=ExtResource("5_340lh")]
+
 [node name="TransitionRect" type="ColorRect" parent="." unique_id=1126691212]
 offset_right = 160.0
 offset_bottom = 160.0
 color = Color(0.20784314, 0.20784314, 0.2509804, 0)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2090891204]
-libraries/ = SubResource("AnimationLibrary_340lh")
 
 [node name="TransitionTimer" type="Timer" parent="." unique_id=1315300009]
 wait_time = 2.0

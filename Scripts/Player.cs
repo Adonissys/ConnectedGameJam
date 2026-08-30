@@ -31,11 +31,14 @@ public partial class Player : CharacterBody2D
 
 	private void TakeDamage(int damageTaken)
 	{
-		int damage = damageTaken - _resistance;
-		Global.Instance.Health -= damage;  
+		float damageReduction = _resistance / 100f;
+		int damage = Mathf.RoundToInt(damageTaken * (1f - damageReduction));
+		damage = Math.Max(0, damage);
+		
+		Global.Instance.Health -= damage; 
 		PlayerSprite.Play("hurt");
 		GD.Print(Global.Instance.Health);  
-	
+
 		if (Global.Instance.Health <= 0 && Global.Instance.Outcome == Global.FightOutcome.PENDING)
 		{
 			HandleDeath();

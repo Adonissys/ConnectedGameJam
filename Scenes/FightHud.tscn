@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://ie1m7y4sawlq"]
+
+[ext_resource type="Texture2D" uid="uid://c7wks1ukwsamc" path="res://Assets/Sprites/ui/hud_base.png" id="1_dhxlv"]
+[ext_resource type="Script" uid="uid://c0ppv0rbrsbct" path="res://Scripts/FightHud.cs" id="1_l827p"]
+
+[node name="FightHud" type="Control" unique_id=1179506759 node_paths=PackedStringArray("HealthLabel", "ResistanceLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l827p")
+HealthLabel = NodePath("StatsMarginContainer/VBoxContainer/HealthLabel")
+ResistanceLabel = NodePath("StatsMarginContainer/VBoxContainer/ResistanceLabel")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=59158321]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer" unique_id=1878501328]
+layout_mode = 2
+texture = ExtResource("1_dhxlv")
+stretch_mode = 4
+
+[node name="StatsMarginContainer" type="MarginContainer" parent="." unique_id=1398984893]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 17
+theme_override_constants/margin_top = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatsMarginContainer" unique_id=1286053320]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="HealthLabel" type="Label" parent="StatsMarginContainer/VBoxContainer" unique_id=450883974]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6627451, 0.28627452, 0.28627452, 1)
+text = "25/50"
+
+[node name="ResistanceLabel" type="Label" parent="StatsMarginContainer/VBoxContainer" unique_id=1629615239]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.5529412, 0.6627451, 1)
+text = "40"

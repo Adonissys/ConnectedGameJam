@@ -1,9 +1,16 @@
 [gd_scene format=3 uid="uid://dsnljhajnd12"]
 
 [ext_resource type="Script" uid="uid://x8lg0r2apbnu" path="res://Scripts/Enemy.cs" id="1_m1htj"]
+[ext_resource type="Shader" uid="uid://dq262l7oxfplg" path="res://Shaders/ReplaceColor.gdshader" id="2_1exfc"]
 [ext_resource type="Texture2D" uid="uid://cue2kgdrmbrcq" path="res://Assets/Sprites/entities/enemy_hit.png" id="2_xeo28"]
 [ext_resource type="Texture2D" uid="uid://dqngde2ue4b4" path="res://Assets/Sprites/entities/idle_enemy.png" id="3_kpr8r"]
 [ext_resource type="Texture2D" uid="uid://t8quu8pkybj6" path="res://Assets/Sprites/entities/enemy_lost.png" id="4_kpr8r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kpr8r"]
+shader = ExtResource("2_1exfc")
+shader_parameter/target_color = Color(0.6627451, 0.28627452, 0.28627452, 1)
+shader_parameter/replacement_color = Color(0, 0, 1, 1)
+shader_parameter/tolerance = 0.1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1exfc"]
 atlas = ExtResource("2_xeo28")
@@ -112,6 +119,7 @@ EnemySprite = NodePath("EnemySprite")
 Audio = NodePath("AudioStreamPlayer2D")
 
 [node name="EnemySprite" type="AnimatedSprite2D" parent="." unique_id=1596481829]
+material = SubResource("ShaderMaterial_kpr8r")
 sprite_frames = SubResource("SpriteFrames_klwtp")
 animation = &"defeat"
 
