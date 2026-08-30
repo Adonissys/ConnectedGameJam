@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://4fpci4ya6edk" path="res://Scenes/Gym.tscn" id="4_f5uda"]
 [ext_resource type="PackedScene" uid="uid://dwey4vuev80v7" path="res://Scenes/Player.tscn" id="5_fmbpm"]
 [ext_resource type="PackedScene" uid="uid://cal0j58kodw61" path="res://Scenes/Hud.tscn" id="7_hemwc"]
+[ext_resource type="FontFile" uid="uid://c4ri0rpjyi3tp" path="res://Assets/Fonts/CozetteVector.ttf" id="8_hemwc"]
+[ext_resource type="AudioStream" uid="uid://u3qj3rhruwa" path="res://Audio/Soundtrack/prisão.ogg" id="9_u3eex"]
 
 [node name="JailScene" type="Node2D" unique_id=1351055193]
 script = ExtResource("1_q5luu")
@@ -35,5 +37,20 @@ position = Vector2(80, 117)
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=899347090]
 
 [node name="Hud" parent="CanvasLayer" unique_id=1014208201 instance=ExtResource("7_hemwc")]
+
+[node name="ActionsMarginContainer" parent="CanvasLayer/Hud" index="2" unique_id=1321845409]
+offset_left = -40.0
+
+[node name="Label" parent="CanvasLayer/Hud/MarginContainer2/FightButton/MarginContainer" parent_id_path=PackedInt32Array(1014208201, 1338463186) index="0" unique_id=1524781764]
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.92941177, 0.89411765, 0.85490197, 1)
+theme_override_colors/font_outline_color = Color(0.20784314, 0.20784314, 0.2509804, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("8_hemwc")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1432775651]
+stream = ExtResource("9_u3eex")
+volume_db = -5.0
+autoplay = true
 
 [editable path="CanvasLayer/Hud"]

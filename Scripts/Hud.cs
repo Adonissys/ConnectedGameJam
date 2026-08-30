@@ -9,6 +9,7 @@ public partial class Hud : Control
 	[Export] private Label HealthLabel;
 	[Export] private Label ResistanceLabel;
 	[Export] private Label ActionsLabel;
+	[Export] private Label FightLabel;
 	
 	public override void _Ready()
 	{
@@ -32,18 +33,27 @@ public partial class Hud : Control
 
 	public void UpdateActions(int current, int max)
 	{
-		ActionsLabel.Text = $"{current}/{max}";
+		ActionsLabel.Text = $"Act.:{current}/{max}";
 	}
 
 	public void UpdateResistance(int resistance)
 	{
-		ResistanceLabel.Text =  resistance.ToString();
+		ResistanceLabel.Text = resistance.ToString();
 	}
 
 	public void LoadStats()
 	{
 		HealthLabel.Text = $"{Global.Instance.Health.ToString()}/{Global.MaxHealth}";
-		ActionsLabel.Text = $"{Global.Instance.Actions.ToString()}/{Global.MaxAction}";
+		ActionsLabel.Text = $"Act.:{Global.Instance.Actions.ToString()}/{Global.MaxAction}";
 		ResistanceLabel.Text = Global.Instance.Resistance.ToString();
 	}
+	
+	private void OnFightButtonMouseEntered(){
+		FightLabel.AddThemeColorOverride("font_outline_color", Color.Color8(99,97,103));
+	}
+	
+	private void OnFightButtonMouseExited(){
+		FightLabel.AddThemeColorOverride("font_outline_color", Color.Color8(53,53,64));
+	}
+
 }
