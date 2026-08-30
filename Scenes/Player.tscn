@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dwey4vuev80v7"]
 
 [ext_resource type="Script" uid="uid://csibvoyygl5ql" path="res://Scripts/Player.cs" id="1_kyqiw"]
+[ext_resource type="PackedScene" uid="uid://daw4mvpaonokt" path="res://Scenes/damage_label.tscn" id="2_5ixxa"]
 [ext_resource type="Texture2D" uid="uid://2rmmty8td7iu" path="res://Assets/Sprites/entities/player_death.png" id="2_dewec"]
 [ext_resource type="Texture2D" uid="uid://bepeyqtysagtv" path="res://Assets/Sprites/entities/idle_player.png" id="2_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://tjoalrtgqhwu" path="res://Assets/Sprites/entities/player_hit.png" id="3_5ixxa"]
@@ -145,10 +146,15 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Player" type="CharacterBody2D" unique_id=677085593 node_paths=PackedStringArray("PlayerSprite")]
+[node name="Player" type="CharacterBody2D" unique_id=677085593 node_paths=PackedStringArray("marker2D", "PlayerSprite")]
 script = ExtResource("1_kyqiw")
+DamageLabelScene = ExtResource("2_5ixxa")
+marker2D = NodePath("Marker2D")
 PlayerSprite = NodePath("PlayerSprite")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=810230507]
 sprite_frames = SubResource("SpriteFrames_4u13r")
 animation = &"idle"
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1643975403]
+position = Vector2(18, -17)

@@ -10,6 +10,7 @@ public partial class Bed : Area2D
 	[Export] private Timer SleepTimer;
 	[Export] private AnimationPlayer OutlineAnim;
 	[Export] private AudioStreamPlayer2D SFX;
+	[Export] private TextureButton FightButton;
 	private bool IsSleeping = false;
 	
 	
@@ -32,12 +33,14 @@ public partial class Bed : Area2D
 
 	private void Sleep()
 	{
-	    if(IsSleeping || Global.Instance.Actions == 0 || Player.Health >= Global.MaxHealth) return;
+		if(IsSleeping || Global.Instance.Actions == 0 || Player.Health >= Global.MaxHealth) return;
 	
-	    IsSleeping = true;
-	    Player.Visible = false;
-	    PlayerSprite.Visible = true;
-	    SleepTimer.Start();
+		IsSleeping = true;
+		FightButton.Disabled = true;
+		FightButton.Hide();
+		Player.Visible = false;
+		PlayerSprite.Visible = true;
+		SleepTimer.Start();
 		SFX.Play();
 	}
 
@@ -51,6 +54,8 @@ public partial class Bed : Area2D
 	private void OnSleepTimerTimeout()
 	{
 		IsSleeping = false;
+		FightButton.Disabled = false;
+		FightButton.Show();
 		PlayerSprite.Visible = false;
 		SFX.Stop();
 		Player.Visible = true;

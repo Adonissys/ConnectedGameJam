@@ -10,6 +10,7 @@ public partial class Gym : Area2D
 	[Export] private Qte qte;
 	[Export] private AnimationPlayer OutlineAnim;
 	[Export] private AudioStreamPlayer2D SFX;
+	[Export] private TextureButton FightButton;
 	private bool WorkingOut = false;	
 	[Signal] public delegate void ActionEventHandler();
 	
@@ -24,6 +25,8 @@ public partial class Gym : Area2D
 		if(WorkingOut || Global.Instance.Actions == 0) return;
 
 		WorkingOut = true;
+		FightButton.Disabled = true;
+		FightButton.Hide();
 		EmitSignal(SignalName.GymCalled);
 		EmitSignal(SignalName.Action);
 		Sprite.Play("Active");
@@ -35,6 +38,8 @@ public partial class Gym : Area2D
 	public void StopWorkingOut()
 	{
 		WorkingOut = false;
+		FightButton.Disabled = false;
+		FightButton.Show();
 		Sprite.Play("Inactive");
 		PlayerSprite.Visible = false;
 		SFX.Stop();

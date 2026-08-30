@@ -7,6 +7,8 @@ public partial class Player : CharacterBody2D
 	[Signal] public delegate void DeathEventHandler();
 
 	[Export] public Enemy CurrentEnemy;
+	[Export] private PackedScene DamageLabelScene;
+	[Export] private Marker2D marker2D;
 	[Export] public AnimatedSprite2D PlayerSprite;
 	
 	public int Health
@@ -36,6 +38,7 @@ public partial class Player : CharacterBody2D
 		damage = Math.Max(0, damage);
 		
 		Global.Instance.Health -= damage; 
+		InitializeDamageLabel(damage);
 		PlayerSprite.Play("hurt");
 		GD.Print(Global.Instance.Health);  
 
@@ -61,6 +64,14 @@ public partial class Player : CharacterBody2D
 		}else{
 			PlayerSprite.Play("idle");
 		}
+	}
+
+	private void InitializeDamageLabel(int damage)
+	{
+		var DamageLabel = DamageLabelScene.Instantiate<DamageLabel>();
+		GetTree().CurrentScene.AddChild(DamageLabel);
+		DamageLabel.GlobalPosition = marker2D.GlobalPosition;
+		DamageLabel.DisplayDamage(damage);
 	}
 	
 }
