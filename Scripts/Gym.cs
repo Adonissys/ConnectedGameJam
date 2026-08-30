@@ -9,6 +9,7 @@ public partial class Gym : Area2D
 	[Export] private AnimatedSprite2D PlayerSprite;
 	[Export] private Qte qte;
 	[Export] private AnimationPlayer OutlineAnim;
+	[Export] private AudioStreamPlayer2D SFX;
 	private bool WorkingOut = false;	
 	[Signal] public delegate void ActionEventHandler();
 	
@@ -27,6 +28,7 @@ public partial class Gym : Area2D
 		EmitSignal(SignalName.Action);
 		Sprite.Play("Active");
 		Player.Visible = false;
+		SFX.Play();
 		PlayerSprite.Visible = true;
 	}
 
@@ -35,6 +37,7 @@ public partial class Gym : Area2D
 		WorkingOut = false;
 		Sprite.Play("Inactive");
 		PlayerSprite.Visible = false;
+		SFX.Stop();
 		Player.Visible = true;
 	}
 

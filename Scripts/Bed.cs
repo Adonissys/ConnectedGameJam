@@ -6,8 +6,10 @@ public partial class Bed : Area2D
 	[Export] private Player Player;
 	[Signal] public delegate void ActionEventHandler();
 	[Export] private AnimatedSprite2D PlayerSprite;
+	[Export] private PackedScene HealthUpLabelScene;
 	[Export] private Timer SleepTimer;
 	[Export] private AnimationPlayer OutlineAnim;
+	[Export] private AudioStreamPlayer2D SFX;
 	private bool IsSleeping = false;
 	
 	
@@ -30,13 +32,13 @@ public partial class Bed : Area2D
 
 	private void Sleep()
 	{
-		if(IsSleeping || Global.Instance.Actions == 0 || Player.Health >= Global.Instance.Health) return;
-
-
-		IsSleeping = true;
-		Player.Visible = false;
-		PlayerSprite.Visible = true;
-		SleepTimer.Start();
+	    if(IsSleeping || Global.Instance.Actions == 0 || Player.Health >= Global.MaxHealth) return;
+	
+	    IsSleeping = true;
+	    Player.Visible = false;
+	    PlayerSprite.Visible = true;
+	    SleepTimer.Start();
+		SFX.Play();
 	}
 
 	private void Rest(int heal)
@@ -50,8 +52,10 @@ public partial class Bed : Area2D
 	{
 		IsSleeping = false;
 		PlayerSprite.Visible = false;
+		SFX.Stop();
 		Player.Visible = true;
 		Rest(15);
+		InitializeHealthUpLabel();
 	}
 
 	private void Outline(bool enabled)
@@ -76,5 +80,13 @@ public partial class Bed : Area2D
 	private void OnMouseExited()
 	{
 		Outline(false);
+	}
+
+	private void InitializeHealthUpLabel()
+	{
+		var HealthUpLabel = HealthUpLabelScene.Instantiate<HealthUpLabel>();
+		GetTree().CurrentScene.AddChild(HealthUpLabel);
+		HealthUpLabel.GlobalPosition = PlayerSprite.GlobalPosition;
+		HealthUpLabel.DisplayHeal();
 	}
 }

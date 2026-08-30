@@ -16,6 +16,7 @@ public partial class GameManager : Node
 		Global.Instance.ActionChanged += OnActionChanged;
 		Global.Instance.HealthChanged += OnHealthChanged;
 		Global.Instance.ResistanceChanged += OnResistanceChanged;
+		GD.Print(Global.Instance.Health);
 	}
 
 	public override void _ExitTree()

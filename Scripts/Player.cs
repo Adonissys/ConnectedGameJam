@@ -8,16 +8,11 @@ public partial class Player : CharacterBody2D
 
 	[Export] public Enemy CurrentEnemy;
 	[Export] public AnimatedSprite2D PlayerSprite;
-
-	private int _health;
 	
 	public int Health
 	{
-		get { return _health; }
-		set 	
-		{	 
-			_health = Math.Clamp(value, 0, Global.MaxHealth);
-		}
+		get { return Global.Instance.Health; }
+		set { Global.Instance.Health = value; }
 	}
 	
 	private int _resistance;
@@ -36,9 +31,13 @@ public partial class Player : CharacterBody2D
 
 	private void TakeDamage(int damageTaken)
 	{
-		Health -= (damageTaken-_resistance);
+		int damage = damageTaken - _resistance;
+		Global.Instance.Health -= damage;  
 		PlayerSprite.Play("hurt");
-		if (Health <= 0 && Global.Instance.Outcome == Global.FightOutcome.PENDING){
+		GD.Print(Global.Instance.Health);  
+	
+		if (Global.Instance.Health <= 0 && Global.Instance.Outcome == Global.FightOutcome.PENDING)
+		{
 			HandleDeath();
 		}
 	}
