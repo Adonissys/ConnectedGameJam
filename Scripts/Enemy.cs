@@ -32,7 +32,7 @@ public partial class Enemy : CharacterBody2D {
 
 		AttackTimer.Timeout += OnAttackTimerTimeout;
 		
-		PunchAudio = GD.Load<AudioStream>("res://Audio/SFX/soco.ogg");
+		PunchAudio = GD.Load<AudioStream>("res://Audio/SFX/soco3.ogg");
 	}
 
 	public override void _Process(double _delta){

@@ -9,6 +9,7 @@ public partial class Bed : Area2D
 	[Export] private PackedScene HealthUpLabelScene;
 	[Export] private Timer SleepTimer;
 	[Export] private AnimationPlayer OutlineAnim;
+	[Export] private AudioStreamPlayer2D SFX;
 	private bool IsSleeping = false;
 	
 	
@@ -37,6 +38,7 @@ public partial class Bed : Area2D
 	    Player.Visible = false;
 	    PlayerSprite.Visible = true;
 	    SleepTimer.Start();
+		SFX.Play();
 	}
 
 	private void Rest(int heal)
@@ -50,6 +52,7 @@ public partial class Bed : Area2D
 	{
 		IsSleeping = false;
 		PlayerSprite.Visible = false;
+		SFX.Stop();
 		Player.Visible = true;
 		Rest(15);
 		InitializeHealthUpLabel();

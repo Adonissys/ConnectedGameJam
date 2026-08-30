@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c5jc8g7g70r6b" path="res://Scenes/health_up_label.tscn" id="2_8vals"]
 [ext_resource type="Shader" uid="uid://cb27u0dc0ulsr" path="res://Shaders/Outline.gdshader" id="2_mc1n3"]
 [ext_resource type="Texture2D" uid="uid://b7ewgixhh85y6" path="res://Assets/Sprites/entities/player_sleep.png" id="3_mmr2t"]
+[ext_resource type="AudioStream" uid="uid://pmtjk1u8oc2n" path="res://Audio/SFX/dormindo.ogg" id="5_8vals"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8vals"]
 shader = ExtResource("2_mc1n3")
@@ -98,12 +99,13 @@ _data = {
 &"RESET": SubResource("Animation_juik6")
 }
 
-[node name="Bed" type="Area2D" unique_id=440541105 node_paths=PackedStringArray("PlayerSprite", "SleepTimer", "OutlineAnim")]
+[node name="Bed" type="Area2D" unique_id=440541105 node_paths=PackedStringArray("PlayerSprite", "SleepTimer", "OutlineAnim", "SFX")]
 script = ExtResource("1_plytk")
 PlayerSprite = NodePath("AnimatedSprite2D")
 HealthUpLabelScene = ExtResource("2_8vals")
 SleepTimer = NodePath("SleepTimer")
 OutlineAnim = NodePath("OutlineAnim")
+SFX = NodePath("SFX")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1200545969]
 material = SubResource("ShaderMaterial_8vals")
@@ -125,6 +127,9 @@ one_shot = true
 
 [node name="OutlineAnim" type="AnimationPlayer" parent="." unique_id=165939017]
 libraries/ = SubResource("AnimationLibrary_w0k0n")
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="." unique_id=2040798642]
+stream = ExtResource("5_8vals")
 
 [connection signal="mouse_entered" from="." to="." method="OnMouseEntered"]
 [connection signal="mouse_exited" from="." to="." method="OnMouseExited"]
