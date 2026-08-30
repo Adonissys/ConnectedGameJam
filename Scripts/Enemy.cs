@@ -19,13 +19,15 @@ public partial class Enemy : CharacterBody2D {
 		10
 	};
 	private List<int> _enemyStamina = new() {
-		10
+		100
 	}; 
 
 	public override void _Ready(){
 		_enemyIndex = Global.Instance.CurrentEnemy;
 		_damage = _enemyDamage[_enemyIndex];
 		_stamina = _enemyStamina[_enemyIndex];
+
+		AttackTimer.Timeout += OnAttackTimerTimeout;
 	}
 
 	public override void _Process(double _delta){
@@ -36,13 +38,15 @@ public partial class Enemy : CharacterBody2D {
 
 	private async void OnAttackTimerTimeout(){
 		await HandleAttack();
-		AttackTimer.Start();
+		if (Global.Instance.Outcome == Global.FightOutcome.PENDING){
+			AttackTimer.Start();
+		}
 	}
 
 	private async Task HandleAttack(){
 		EnemySprite.Play("attack"+_enemyIndex.ToString());
 		await ToSignal(EnemySprite, AnimatedSprite2D.SignalName.AnimationFinished);
-		EmitSignal(SignalName.Attack);
+		EmitSignal(SignalName.Attack, _damage);
 		_stamina -= 10;
 	}
 
