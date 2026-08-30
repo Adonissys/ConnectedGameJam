@@ -10,7 +10,10 @@ public partial class Enemy : CharacterBody2D {
 
 	[Export] public Timer AttackTimer;
 	[Export] public AnimatedSprite2D EnemySprite;
+	[Export] private AudioStreamPlayer2D Audio;
 
+	private AudioStream PunchAudio;
+	private AudioStream DeathAudio;
 	private int _damage;
 	private int _stamina;
 	private int _enemyIndex;
@@ -28,6 +31,8 @@ public partial class Enemy : CharacterBody2D {
 		_stamina = _enemyStamina[_enemyIndex];
 
 		AttackTimer.Timeout += OnAttackTimerTimeout;
+		
+		PunchAudio = GD.Load<AudioStream>("res://Audio/SFX/soco.ogg");
 	}
 
 	public override void _Process(double _delta){
@@ -44,7 +49,9 @@ public partial class Enemy : CharacterBody2D {
 	}
 
 	private async Task HandleAttack(){
+		Audio.Stream = PunchAudio;
 		EnemySprite.Play("attack"+_enemyIndex.ToString());
+		Audio.Play();
 		await ToSignal(EnemySprite, AnimatedSprite2D.SignalName.AnimationFinished);
 		EmitSignal(SignalName.Attack, _damage);
 		_stamina -= 10;

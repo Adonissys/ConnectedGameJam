@@ -7,7 +7,11 @@ public partial class FightScene : Node2D
 	[Export] public Enemy CurrentEnemy;
 	[Export] public Player CurrentPlayer;
 	[Export] public AnimationPlayer TransitionAnimation;
+	[Export] private AudioStreamPlayer2D SFX;
+	[Export] private AudioStreamPlayer Soundtrack;
 
+	private AudioStream WinAudio;
+	private AudioStream DefeatAudio;
 	private bool fightEnded;
 	private string nextScene;
 
@@ -18,6 +22,9 @@ public partial class FightScene : Node2D
 		TransitionAnimation.AnimationFinished += OnAnimationFinished;
 
 		Global.Instance.Outcome = Global.FightOutcome.PENDING;
+		
+		WinAudio = GD.Load<AudioStream>("res://Audio/SFX/win.ogg");
+		DefeatAudio = GD.Load<AudioStream>("res://Audio/SFX/lose.ogg");
 	}
 
 	public override void _Process(double delta)
@@ -28,10 +35,18 @@ public partial class FightScene : Node2D
 	}
 
 	private void OnPlayerDeath(){
+		Soundtrack.Stop();
+		SFX.Stream = DefeatAudio;
+		SFX.Play();
+		
 		fightEnded = true;
 	}
 
 	private void OnEnemyDefeat(){
+		Soundtrack.Stop();
+		SFX.Stream = WinAudio;
+		SFX.Play();
+		
 		fightEnded = true;
 	}
 

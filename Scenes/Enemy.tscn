@@ -83,10 +83,11 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Enemy" type="CharacterBody2D" unique_id=506923395 node_paths=PackedStringArray("AttackTimer", "EnemySprite")]
+[node name="Enemy" type="CharacterBody2D" unique_id=506923395 node_paths=PackedStringArray("AttackTimer", "EnemySprite", "Audio")]
 script = ExtResource("1_m1htj")
 AttackTimer = NodePath("AttackTimer")
 EnemySprite = NodePath("EnemySprite")
+Audio = NodePath("AudioStreamPlayer2D")
 
 [node name="EnemySprite" type="AnimatedSprite2D" parent="." unique_id=1596481829]
 sprite_frames = SubResource("SpriteFrames_klwtp")
@@ -95,3 +96,5 @@ animation = &"attack0"
 [node name="AttackTimer" type="Timer" parent="." unique_id=924869333]
 one_shot = true
 autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1811905870]
