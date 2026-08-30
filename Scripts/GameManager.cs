@@ -7,18 +7,15 @@ public partial class GameManager : Node
 	[Export] private Gym gym;
 	[Export] private Hud hud;
 	
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		bed.Action += OnAction;
 		gym.Action += OnAction;
 		gym.GymCalled += OnGymCalled;
 		hud.FightStarted += OnFightStarted;
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
+		Global.Instance.ActionChanged += OnActionChanged;
+		Global.Instance.HealthChanged += OnHealthChanged;
+		Global.Instance.ResistanceChanged += OnResistanceChanged;
 	}
 
 	private void OnFightStarted(){
@@ -37,4 +34,18 @@ public partial class GameManager : Node
 		hud.ShowQuickTimeEvent();
 	}
 
+	private void OnActionChanged(int current, int max)
+	{
+		hud.UpdateActions(current, max);
+	}
+
+	private void OnHealthChanged(int current, int max)
+	{
+		hud.UpdateHealth(current, max);
+	}
+
+	private void OnResistanceChanged(int current)
+	{
+		hud.UpdateResistance(current);
+	}
 }

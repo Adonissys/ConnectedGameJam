@@ -3,7 +3,9 @@ using System;
 
 public partial class Global : Node
 {
-
+	[Signal] public delegate void HealthChangedEventHandler(int current, int max);
+	[Signal] public delegate void ResistanceChangedEventHandler(int current);
+	[Signal] public delegate void ActionChangedEventHandler(int current, int max);
 	public static Global Instance { get; private set; }
 
 	public enum FightOutcome {
@@ -13,16 +15,44 @@ public partial class Global : Node
 	}
 	public FightOutcome Outcome { get; set; }
 
+	//Health variables
 	public const int MaxHealth = 50;
-	private int _health = 0;
+	private int _health = 50;
 	public int Health
 	{
-		get => _health; 
-		set => _health = Math.Clamp(value, 0, MaxHealth);
-	}
+    	get => _health;
+    	set
+    	{
+        	_health = Mathf.Clamp(value, 0, MaxHealth);
+        	EmitSignal(SignalName.HealthChanged, _health, MaxHealth);
+		} 
+    }
 	
-	public int Resistance{get; set;} = 0;
-	public int Actions{get; set;} = 3;
+	//Resistance variables
+	private int _resistance = 5;
+	public int Resistance
+	{
+		get => _resistance;
+		set
+		{
+			_resistance = value;
+			EmitSignal(SignalName.ResistanceChanged, _resistance); 
+		} 
+	} 
+
+	//Action variables
+	public const int MaxAction = 3;
+	private int _action = 3;
+	public int Actions
+	{
+		get => _action;
+		set
+		{
+			_action = Mathf.Clamp(value, 0, MaxAction);
+			EmitSignal(SignalName.ActionChanged, _action, MaxAction);
+		}
+	}
+
 	public int CurrentEnemy{get; set;} = 0;
 	
 	public override void _Ready()
