@@ -32,18 +32,19 @@ public partial class Hud : Control
 
 	public void UpdateActions(int current, int max)
 	{
-		ActionsLabel.Text = $"{current}/{max}";
+		ActionsLabel.Text = $"Act.:{current}/{max}";
 	}
 
 	public void UpdateResistance(int resistance)
 	{
-		ResistanceLabel.Text =  resistance.ToString();
+		ResistanceLabel.Text = resistance.ToString();
 	}
 
 	public void LoadStats()
 	{
 		HealthLabel.Text = $"{Global.Instance.Health.ToString()}/{Global.MaxHealth}";
-		ActionsLabel.Text = $"{Global.Instance.Actions.ToString()}/{Global.MaxAction}";
+		ActionsLabel.Text = $"Act.:{Global.Instance.Actions.ToString()}/{Global.MaxAction}";
 		ResistanceLabel.Text = Global.Instance.Resistance.ToString();
 	}
+
 }
