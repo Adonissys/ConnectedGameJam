@@ -38,17 +38,16 @@ public partial class Qte : Node2D
 
 	public override void _Process(double delta)
 	{
-		// Handle input here instead of in each gauge
+		
 		if (Input.IsActionJustPressed("interact"))
 		{
-			PointerAnimation.SpeedScale = 1.0f * (4-Chances);
 			foreach(Gauge gauge in Gauges)
 			{
 				if (gauge.IsPointerInGauge && gauge.CanRecieveInput)
 				{
 					GD.Print(gauge.Quality);
 					OnGaugeSelected(gauge.Quality);
-					return; // Exit after first gauge responds
+					return; 
 				}
 			}
 		}
@@ -65,7 +64,7 @@ public partial class Qte : Node2D
 	        gauge.CanRecieveInput = true;
 	    }
 
-	    PointerAnimation.SpeedScale = 0.5f;  // Start at 0.5 speed
+	    PointerAnimation.SpeedScale = 0.5f;  
 	    PointerAnimation.Play("Hover");
 	}
 
