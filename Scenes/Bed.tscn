@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cx4j4ayis4er8" path="res://Assets/Sprites/scenneries/bed.png" id="2_8pjge"]
 [ext_resource type="Shader" uid="uid://cb27u0dc0ulsr" path="res://Shaders/Outline.gdshader" id="2_mc1n3"]
 [ext_resource type="Texture2D" uid="uid://b7ewgixhh85y6" path="res://Assets/Sprites/entities/player_sleep.png" id="3_mmr2t"]
+[ext_resource type="AudioStream" uid="uid://pmtjk1u8oc2n" path="res://Audio/SFX/dormindo.ogg" id="5_8vals"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8vals"]
 shader = ExtResource("2_mc1n3")
@@ -123,6 +124,9 @@ one_shot = true
 
 [node name="OutlineAnim" type="AnimationPlayer" parent="." unique_id=165939017]
 libraries/ = SubResource("AnimationLibrary_w0k0n")
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="." unique_id=2040798642]
+stream = ExtResource("5_8vals")
 
 [connection signal="mouse_entered" from="." to="." method="OnMouseEntered"]
 [connection signal="mouse_exited" from="." to="." method="OnMouseExited"]

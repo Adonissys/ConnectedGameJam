@@ -71,7 +71,7 @@ libraries/ = SubResource("AnimationLibrary_340lh")
 
 [node name="Soundtrack" type="AudioStreamPlayer" parent="." unique_id=211735422]
 stream = ExtResource("5_o0maf")
+volume_db = -15.0
 autoplay = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=784218731]
-volume_db = -1.675

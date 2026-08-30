@@ -7,7 +7,7 @@ public partial class Player : CharacterBody2D
 	[Signal] public delegate void DeathEventHandler();
 
 	[Export] public Enemy CurrentEnemy;
-	[Export] public AnimatedSprite2D PlayerSprite;
+	[Export] public AnimationPlayer PlayerAnimation;
 
 	private int _health;
 	
@@ -16,7 +16,7 @@ public partial class Player : CharacterBody2D
 		get { return _health; }
 		set 	
 		{	 
-			_health = Math.Clamp(value, 0, Global.MaxHealth);
+			_health = value; 
 		}
 	}
 	
@@ -24,21 +24,25 @@ public partial class Player : CharacterBody2D
 
 	public override void _Ready()
 	{
-		if (CurrentEnemy != null){
-			CurrentEnemy.Attack += OnEnemyAttack;
-		}
-		PlayerSprite.AnimationFinished += OnAnimationFinished;
+		// CurrentEnemy.Attack += OnEnemyAttack;
+		PlayerAnimation.AnimationFinished += OnAnimationFinished;
 		Health = Global.Instance.Health;
 		_resistance = Global.Instance.Resistance;
 
-		PlayerSprite.Play("idle");
+		//PlayerAnimation.Play("idle");
+	}
+
+	public override void _Process(double delta)
+	{	
+		if (Global.Instance.Outcome == Global.FightOutcome.PLAYER_WON){
+			//Player won logic
+		}
 	}
 
 	private void TakeDamage(int damageTaken)
 	{
 		Health -= (damageTaken-_resistance);
-		PlayerSprite.Play("hurt");
-		GD.Print(Health);
+		//PlayerAnimation.Play("hurt");
 		if (Health <= 0 && Global.Instance.Outcome == Global.FightOutcome.PENDING){
 			HandleDeath();
 		}
@@ -47,19 +51,20 @@ public partial class Player : CharacterBody2D
 	private void HandleDeath()
 	{
 		Global.Instance.Outcome = Global.FightOutcome.ENEMY_WON;
-		PlayerSprite.Play("death");
+		//PlayerAnimation.Play("death");
 	}
 
 	private void OnEnemyAttack(int baseDamage){
 		TakeDamage(baseDamage);
 	}
 
-	private void OnAnimationFinished(){
-		if (Global.Instance.Outcome == Global.FightOutcome.ENEMY_WON){
+	private void OnAnimationFinished(StringName animName){
+		if (animName == "death"){
 			EmitSignal(SignalName.Death);
 		}else{
-			PlayerSprite.Play("idle");
+			//PlayerAnimation.Play("idle");
 		}
+
 	}
 	
 }

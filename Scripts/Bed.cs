@@ -8,6 +8,7 @@ public partial class Bed : Area2D
 	[Export] private AnimatedSprite2D PlayerSprite;
 	[Export] private Timer SleepTimer;
 	[Export] private AnimationPlayer OutlineAnim;
+	[Export] private AudioStreamPlayer2D SFX;
 	private bool IsSleeping = false;
 	
 	
@@ -36,6 +37,7 @@ public partial class Bed : Area2D
 		IsSleeping = true;
 		Player.Visible = false;
 		PlayerSprite.Visible = true;
+		SFX.Play();
 		SleepTimer.Start();
 	}
 
@@ -50,6 +52,7 @@ public partial class Bed : Area2D
 	{
 		IsSleeping = false;
 		PlayerSprite.Visible = false;
+		SFX.Stop();
 		Player.Visible = true;
 		Rest(15);
 	}
