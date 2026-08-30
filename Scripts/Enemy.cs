@@ -19,7 +19,7 @@ public partial class Enemy : CharacterBody2D {
 		10
 	};
 	private List<int> _enemyStamina = new() {
-		100
+		20
 	}; 
 
 	public override void _Ready(){
@@ -54,7 +54,7 @@ public partial class Enemy : CharacterBody2D {
 		Global.Instance.Outcome = Global.FightOutcome.PLAYER_WON;
 		EnemySprite.Play("defeat"+_enemyIndex.ToString());
 		await ToSignal(EnemySprite, AnimatedSprite2D.SignalName.AnimationFinished);
-		EmitSignal(SignalName.Defeat, _damage);
+		EmitSignal(SignalName.Defeat);
 	}
 
 }

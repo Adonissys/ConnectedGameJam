@@ -29,6 +29,7 @@ public partial class Global : Node
     }
 	
 	//Resistance variables
+	public const int MinResistance = 5;
 	private int _resistance = 5;
 	public int Resistance
 	{
@@ -67,4 +68,12 @@ public partial class Global : Node
 	public override void _Process(double delta)
 	{
 	}
+
+	public void ResetGameState()
+	{
+		CurrentEnemy = 0;
+		Health = MaxHealth;
+		Resistance = MinResistance;
+	}
+
 }

@@ -5,10 +5,47 @@
 [ext_resource type="Texture2D" uid="uid://d0cp60mrb0le1" path="res://Assets/Sprites/scenneries/arena.png" id="2_ku2io"]
 [ext_resource type="PackedScene" uid="uid://dwey4vuev80v7" path="res://Scenes/Player.tscn" id="3_ku2io"]
 
-[node name="FightScene" type="Node2D" unique_id=1944087654 node_paths=PackedStringArray("CurrentEnemy", "CurrentPlayer")]
+[sub_resource type="Animation" id="Animation_ku2io"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.20784314, 0.20784314, 0.2509804, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o0maf"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.20784314, 0.20784314, 0.2509804, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_340lh"]
+_data = {
+&"RESET": SubResource("Animation_ku2io"),
+&"fade_out": SubResource("Animation_o0maf")
+}
+
+[node name="FightScene" type="Node2D" unique_id=1944087654 node_paths=PackedStringArray("CurrentEnemy", "CurrentPlayer", "TransitionAnimation")]
 script = ExtResource("1_s2r8q")
 CurrentEnemy = NodePath("Enemy")
 CurrentPlayer = NodePath("Player")
+TransitionAnimation = NodePath("AnimationPlayer")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=66884969]
 position = Vector2(80, 80)
@@ -20,3 +57,11 @@ position = Vector2(96, 121)
 [node name="Player" parent="." unique_id=677085593 node_paths=PackedStringArray("CurrentEnemy") instance=ExtResource("3_ku2io")]
 position = Vector2(56, 126)
 CurrentEnemy = NodePath("../Enemy")
+
+[node name="TransitionRect" type="ColorRect" parent="." unique_id=1126691212]
+offset_right = 160.0
+offset_bottom = 160.0
+color = Color(0.20784314, 0.20784314, 0.2509804, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2090891204]
+libraries/ = SubResource("AnimationLibrary_340lh")

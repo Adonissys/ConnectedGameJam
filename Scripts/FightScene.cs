@@ -6,23 +6,24 @@ public partial class FightScene : Node2D
 
 	[Export] public Enemy CurrentEnemy;
 	[Export] public Player CurrentPlayer;
+	[Export] public AnimationPlayer TransitionAnimation;
 
 	private bool fightEnded;
+	private string nextScene;
 
 	public override void _Ready()
 	{
 		CurrentEnemy.Defeat += OnEnemyDefeat;
 		CurrentPlayer.Death += OnPlayerDeath;
+		TransitionAnimation.AnimationFinished += OnAnimationFinished;
+
+		Global.Instance.Outcome = Global.FightOutcome.PENDING;
 	}
 
 	public override void _Process(double delta)
 	{
 		if (fightEnded){
-			if(Global.Instance.Outcome == Global.FightOutcome.PLAYER_WON){
-
-			}else{
-				
-			}
+			TransitionAnimation.Play("fade_out");
 		}
 	}
 
@@ -32,5 +33,15 @@ public partial class FightScene : Node2D
 
 	private void OnEnemyDefeat(){
 		fightEnded = true;
+	}
+
+	private void OnAnimationFinished(StringName animName){
+		if(Global.Instance.Outcome == Global.FightOutcome.PLAYER_WON){
+			nextScene = "res://Scenes/JailScene.tscn";
+		}else{
+			nextScene = "res://Scenes/MainMenu.tscn";
+			Global.Instance.ResetGameState();
+		}
+		GetTree().ChangeSceneToFile(nextScene);
 	}
 }
