@@ -37,7 +37,13 @@ public partial class FightScene : Node2D
 
 	private void OnAnimationFinished(StringName animName){
 		if(Global.Instance.Outcome == Global.FightOutcome.PLAYER_WON){
-			nextScene = "res://Scenes/JailScene.tscn";
+			Global.Instance.CurrentEnemy += 1;
+			if (Global.Instance.CurrentEnemy >= Global.MaxEnemy){
+				nextScene = "res://Scenes/EndingScene.tscn";
+			}else {
+				nextScene = "res://Scenes/JailScene.tscn";
+			}
+			
 		}else{
 			nextScene = "res://Scenes/MainMenu.tscn";
 			Global.Instance.ResetGameState();

@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cqe1udqn5f461"]
+
+[ext_resource type="Script" uid="uid://cy5ku4cd7sqft" path="res://Scripts/EndingScene.cs" id="1_4l0lt"]
+[ext_resource type="Texture2D" uid="uid://bvpcg1u8ugcwv" path="res://Assets/Sprites/ui/menu_bcg.png" id="2_ulnso"]
+
+[node name="EndingScene" type="Control" unique_id=1929838844 node_paths=PackedStringArray("SceneTimer")]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4l0lt")
+SceneTimer = NodePath("SceneTimer")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=139737429]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ulnso")
+
+[node name="Label" type="Label" parent="." unique_id=209932858]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -29.5
+offset_top = -17.0
+offset_right = 29.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.92941177, 0.89411765, 0.85490197, 1)
+theme_override_colors/font_outline_color = Color(0.20784314, 0.20784314, 0.2509804, 1)
+theme_override_constants/outline_size = 3
+text = "VICTORY!"
+
+[node name="SceneTimer" type="Timer" parent="." unique_id=1293611165]
+wait_time = 5.0
+one_shot = true
+autostart = true
