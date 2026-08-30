@@ -2,11 +2,21 @@
 
 [ext_resource type="Script" uid="uid://dlxt8k5jf3oj4" path="res://Scripts/FightScene.cs" id="1_s2r8q"]
 [ext_resource type="PackedScene" uid="uid://dsnljhajnd12" path="res://Scenes/Enemy.tscn" id="2_7gx8k"]
+[ext_resource type="Texture2D" uid="uid://d0cp60mrb0le1" path="res://Assets/Sprites/scenneries/arena.png" id="2_ku2io"]
 [ext_resource type="PackedScene" uid="uid://dwey4vuev80v7" path="res://Scenes/Player.tscn" id="3_ku2io"]
 
-[node name="FightScene" type="Node2D" unique_id=1944087654]
+[node name="FightScene" type="Node2D" unique_id=1944087654 node_paths=PackedStringArray("CurrentEnemy", "CurrentPlayer")]
 script = ExtResource("1_s2r8q")
+CurrentEnemy = NodePath("Enemy")
+CurrentPlayer = NodePath("Player")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=66884969]
+position = Vector2(80, 80)
+texture = ExtResource("2_ku2io")
 
 [node name="Enemy" parent="." unique_id=506923395 instance=ExtResource("2_7gx8k")]
+position = Vector2(96, 121)
 
-[node name="Player" parent="." unique_id=677085593 instance=ExtResource("3_ku2io")]
+[node name="Player" parent="." unique_id=677085593 node_paths=PackedStringArray("CurrentEnemy") instance=ExtResource("3_ku2io")]
+position = Vector2(56, 126)
+CurrentEnemy = NodePath("../Enemy")

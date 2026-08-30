@@ -55,17 +55,17 @@ public partial class Qte : Node2D
 
 	public void ActivateQte()
 	{
-	    Chances = 3;
+		Chances = 3;
 
-	    Visible = true;
+		Visible = true;
 
-	    foreach(Gauge gauge in Gauges)
-	    {
-	        gauge.CanRecieveInput = true;
-	    }
+		foreach(Gauge gauge in Gauges)
+		{
+			gauge.CanRecieveInput = true;
+		}
 
-	    PointerAnimation.SpeedScale = 0.5f;  
-	    PointerAnimation.Play("Hover");
+		PointerAnimation.SpeedScale = 0.5f;  
+		PointerAnimation.Play("Hover");
 	}
 
 	public void DeactivateQte()
@@ -101,7 +101,7 @@ public partial class Qte : Node2D
 				Global.Instance.Resistance += 6;
 				break;
 		}
-		PointerAnimation.SpeedScale += 0.25f;
+		PointerAnimation.SpeedScale += 0.5f;
 		Chances --;
 	}
 
