@@ -8,6 +8,8 @@ public partial class Qte : Node2D
 	[Signal] public delegate void QteFinishedEventHandler();
 	[Export] public Array<Gauge> Gauges { get; set; } = new();
 	[Export] private AnimationPlayer PointerAnimation;
+	[Export] private PackedScene QualityLabelScene;
+	[Export] private Area2D Pointer;
 	private int _chances = 0;
 	public int Chances
 	{
@@ -86,14 +88,25 @@ public partial class Qte : Node2D
 		switch (gaugeQuality)
 		{
 			case Gauge.GaugeQuality.Bad:
+				InitializeQualityLabel(gaugeQuality);
 				Global.Instance.Resistance += 2;
 				break;
 			case Gauge.GaugeQuality.Medium:
+				InitializeQualityLabel(gaugeQuality);
 				Global.Instance.Resistance += 4;
 				break;
 			case Gauge.GaugeQuality.Good:
+				InitializeQualityLabel(gaugeQuality);
 				Global.Instance.Resistance += 6;
 				break;
 		}
+	}
+
+	private void InitializeQualityLabel(Gauge.GaugeQuality gaugeQuality)
+	{
+		var QualityLabel = QualityLabelScene.Instantiate<QualityLabel>();
+		GetTree().CurrentScene.AddChild(QualityLabel);
+		QualityLabel.GlobalPosition = Pointer.GlobalPosition;
+		QualityLabel.DisplayQuality(gaugeQuality);
 	}
 }

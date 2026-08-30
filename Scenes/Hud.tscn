@@ -12,13 +12,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_chfh5")
-FightButton = NodePath("Button")
+FightButton = NodePath("")
 qte = NodePath("QuickTimeEvent/QTE")
-
-[node name="Button" type="Button" parent="." unique_id=1842501308]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
 
 [node name="QuickTimeEvent" type="Control" parent="." unique_id=514444363]
 layout_mode = 1
@@ -30,5 +25,4 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="QTE" parent="QuickTimeEvent" unique_id=1655114331 node_paths=PackedStringArray("Gauges") instance=ExtResource("2_8vcfy")]
-
+[node name="QTE" parent="QuickTimeEvent" unique_id=1655114331 instance=ExtResource("2_8vcfy")]
