@@ -98,11 +98,12 @@ _data = {
 &"RESET": SubResource("Animation_juik6")
 }
 
-[node name="Bed" type="Area2D" unique_id=440541105 node_paths=PackedStringArray("PlayerSprite", "SleepTimer", "OutlineAnim")]
+[node name="Bed" type="Area2D" unique_id=440541105 node_paths=PackedStringArray("PlayerSprite", "SleepTimer", "OutlineAnim", "SFX")]
 script = ExtResource("1_plytk")
 PlayerSprite = NodePath("AnimatedSprite2D")
 SleepTimer = NodePath("SleepTimer")
 OutlineAnim = NodePath("OutlineAnim")
+SFX = NodePath("SFX")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1200545969]
 material = SubResource("ShaderMaterial_8vals")
